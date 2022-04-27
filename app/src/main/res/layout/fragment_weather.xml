@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.weather.WeatherFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <!--Current Weather -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/_weather_card"
+                style="@style/WeatherCardViewPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/weather_inner_margin"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/weather_card_padding_horizontal"
+                    android:paddingVertical="@dimen/weather_card_padding_vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_weather_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:contentDescription="@string/title_weather"
+                        android:minWidth="@dimen/weather_image_size"
+                        android:minHeight="@dimen/weather_image_size"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_clear_cloudy"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_temperature"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_temperature" />
+
+                    <TextView
+                        android:id="@+id/tv_weather_title"
+                        style="@style/WeatherTextViewOnPrimaryCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/weather_title_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_weather_image"
+                        tools:text="Clear Cloudy" />
+
+                    <TextView
+                        android:id="@+id/tv_day_part"
+                        style="@style/WeatherTextViewOnPrimaryCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/weather_day_part_text_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_weather_title"
+                        tools:text="@string/st_morning" />
+
+                    <TextView
+                        android:id="@+id/tv_temperature"
+                        style="@style/WeatherTextViewOnPrimaryCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/weather_temperature_size"
+                        app:layout_constraintEnd_toStartOf="@id/_temperature_sign"
+                        app:layout_constraintTop_toTopOf="@id/_temperature_sign"
+                        tools:text="29" />
+
+                    <TextView
+                        android:id="@+id/_temperature_sign"
+                        style="@style/WeatherTextViewOnPrimaryCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/st_celsius_sign"
+                        android:textSize="@dimen/weather_temperature_size"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/_fl"
+                        style="@style/WeatherTextViewOnPrimaryCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/weather_feels_like_size"
+                        app:layout_constraintStart_toStartOf="@id/tv_temperature"
+                        app:layout_constraintTop_toBottomOf="@id/tv_temperature"
+                        tools:text="Feels like 30°" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!--Weather Details-->
+            <TextView
+                android:id="@+id/_wind"
+                style="@style/WeatherDetailsTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/weather_details_margin_top"
+                android:text="@string/st_wind"
+                app:layout_constraintEnd_toEndOf="@id/tv_wind"
+                app:layout_constraintStart_toStartOf="@id/tv_wind"
+                app:layout_constraintTop_toBottomOf="@id/_weather_card" />
+
+            <TextView
+                android:id="@+id/_humidity"
+                style="@style/WeatherDetailsTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/st_humidity"
+                app:layout_constraintEnd_toEndOf="@id/tv_humidity"
+                app:layout_constraintStart_toStartOf="@id/tv_humidity"
+                app:layout_constraintTop_toTopOf="@id/_wind" />
+
+            <TextView
+                android:id="@+id/_pressure"
+                style="@style/WeatherDetailsTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/st_pressure"
+                app:layout_constraintEnd_toEndOf="@id/tv_pressure"
+                app:layout_constraintStart_toStartOf="@id/tv_pressure"
+                app:layout_constraintTop_toTopOf="@id/_humidity" />
+
+            <TextView
+                android:id="@+id/tv_wind"
+                style="@style/WeatherDetailsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/tv_humidity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_wind"
+                tools:text="33 km/h" />
+
+            <TextView
+                android:id="@+id/tv_humidity"
+                style="@style/WeatherDetailsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/tv_pressure"
+                app:layout_constraintStart_toEndOf="@id/tv_wind"
+                app:layout_constraintTop_toTopOf="@id/tv_wind"
+                tools:text="23 km" />
+
+            <TextView
+                android:id="@+id/tv_pressure"
+                style="@style/WeatherDetailsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_humidity"
+                app:layout_constraintTop_toTopOf="@id/tv_humidity"
+                tools:text="1200 mbar" />
+
+
+            <!--Day forecast-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hour_forecast"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/weather_inner_margin"
+                android:layout_marginVertical="@dimen/weather_forecast_margin_vertical"
+                android:background="@color/sunrise"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_wind" />
+
+            <!--Sun State-->
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/pb_sunset"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/weather_sun_state_progress_margin"
+                android:max="24"
+                app:indicatorColor="@color/sunrise"
+                app:layout_constraintBottom_toTopOf="@id/tv_sun_state_first"
+                app:layout_constraintEnd_toEndOf="@id/tv_sun_state_second"
+                app:layout_constraintStart_toStartOf="@id/tv_sun_state_first"
+                app:trackColor="@color/sunset"
+                tools:background="@color/sunrise" />
+
+            <TextView
+                android:id="@+id/tv_sun_state_first"
+                style="@style/WeatherDetailsTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/weather_sun_states_margin_horizontal"
+                android:layout_marginTop="@dimen/weather_sun_states_margin_top"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_hour_forecast"
+                tools:text="Sunrise 05:30" />
+
+            <TextView
+                android:id="@+id/tv_sun_state_second"
+                style="@style/WeatherDetailsTitleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/weather_sun_states_margin_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_sun_state_first"
+                tools:text="Sunset 05:30" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/_card_rv"
+                style="@style/WeatherCardViewSecondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/weather_inner_margin"
+                android:layout_marginVertical="@dimen/weather_forecast_margin_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_sun_state_first">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_day_forecast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

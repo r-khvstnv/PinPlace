@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/day_forecast_inner_padding"
+    tools:background="?attr/colorSecondary">
+
+    <ImageView
+        android:id="@+id/iv_weather_image_df"
+        android:layout_width="@dimen/hour_forecast_image_size"
+        android:layout_height="@dimen/hour_forecast_image_size"
+        android:contentDescription="@string/title_weather"
+        android:src="@drawable/ic_partly_cloudy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_day_df"
+        style="@style/WeatherTextViewOnSecondaryCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/day_forecast_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/iv_weather_image_df"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/iv_weather_image_df"
+        app:layout_constraintTop_toTopOf="@id/iv_weather_image_df"
+        tools:text="Monday" />
+
+    <TextView
+        android:id="@+id/tv_weather_title_df"
+        style="@style/WeatherTextViewOnSecondaryCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:textSize="@dimen/day_forecast_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/iv_weather_image_df"
+        app:layout_constraintEnd_toStartOf="@id/tv_temperature_df"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/tv_day_df"
+        app:layout_constraintTop_toTopOf="@id/iv_weather_image_df"
+        tools:text="Partly Cloudy" />
+
+    <TextView
+        android:id="@+id/tv_temperature_df"
+        style="@style/WeatherTextViewOnSecondaryCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/day_forecast_temperature_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/iv_weather_image_df"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iv_weather_image_df"
+        tools:text="29°/18°" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,4 +2,36 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="card_radius">20dp</dimen>
+
+    <!--Weather-->
+    <dimen name="weather_inner_margin">16dp</dimen>
+    <dimen name="weather_card_padding_horizontal">16dp</dimen>
+    <dimen name="weather_card_padding_vertical">16dp</dimen>
+    <dimen name="weather_image_size">80dp</dimen>
+    <dimen name="weather_title_size">28sp</dimen>
+    <dimen name="weather_day_part_text_size">16sp</dimen>
+    <dimen name="weather_temperature_size">60sp</dimen>
+    <dimen name="weather_feels_like_size">14sp</dimen>
+
+    <dimen name="weather_details_title_text_size">14sp</dimen>
+    <dimen name="weather_details_text_size">20sp</dimen>
+    <dimen name="weather_details_margin_top">30dp</dimen>
+    <dimen name="weather_sun_states_margin_horizontal">30dp</dimen>
+    <dimen name="weather_sun_states_margin_top">50dp</dimen>
+    <dimen name="weather_sun_state_progress_margin">10dp</dimen>
+    <dimen name="weather_forecast_margin_vertical">30dp</dimen>
+
+    <!--Weather items-->
+    <dimen name="hour_forecast_inner_padding">16dp</dimen>
+    <dimen name="hour_forecast_inner_margin">5dp</dimen>
+    <dimen name="hour_forecast_image_size">36dp</dimen>
+    <dimen name="day_forecast_inner_padding">10dp</dimen>
+    <dimen name="day_forecast_temperature_text_size">22sp</dimen>
+    <dimen name="day_forecast_text_size">18sp</dimen>
+
+
+
 </resources>

@@ -1,13 +1,13 @@
-package com.rkhvstnv.pinplace.ui.home
+package com.rkhvstnv.pinplace.ui.weather
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class WeatherViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is weather Fragment"
     }
     val text: LiveData<String> = _text
 }

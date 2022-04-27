@@ -1,6 +1,24 @@
 <resources>
     <string name="app_name">Pin Place</string>
-    <string name="title_home">Home</string>
+    <string name="title_weather">Weather</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+
+    <!--Weather-->
+    <string name="st_celsius">°C</string>
+    <string name="st_celsius_sign">°</string>
+    <string name="st_morning">Morning</string>
+    <string name="st_afternoon">Afternoon</string>
+    <string name="st_evening">Evening</string>
+    <string name="st_night">Night</string>
+    <string name="st_feels_like">Feels like</string>
+    <string name="st_wind">Wind</string>
+    <string name="st_humidity">Humidity</string>
+    <string name="st_pressure">Pressure</string>
+    <string name="st_km_per_hour">km/h</string>
+    <string name="st_km">km</string>
+    <string name="st_m_bar">mbar</string>
+    <string name="st_sunrise">Sunrise</string>
+    <string name="st_sunset">Sunset</string>
 </resources>
