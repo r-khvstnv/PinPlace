@@ -2,6 +2,7 @@ package com.rkhvstnv.pinplace.ui.weather
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,22 @@ class WeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.inLoading.observe(viewLifecycleOwner){
+            inLoading->
+
+            Log.i("test_loading", inLoading.toString())
+        }
+
+        viewModel.loadingError.observe(viewLifecycleOwner){
+            e->
+            Log.i("test_loading_error", e.toString())
+        }
+
+        viewModel.weatherModel.observe(viewLifecycleOwner){
+            data->
+            Log.i("test_model", data.toString())
+        }
     }
 
     override fun onDestroyView() {

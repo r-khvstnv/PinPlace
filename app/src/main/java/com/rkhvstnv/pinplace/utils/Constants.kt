@@ -1,0 +1,13 @@
+package com.rkhvstnv.pinplace.utils
+
+object Constants {
+    //weather api
+    const val WEATHER_API_ENDPOINT = "data/2.5/onecall?"
+    const val WEATHER_API_BASE_URL = "https://api.openweathermap.org/"
+    const val WEATHER_API_LAT = "lat"
+    const val WEATHER_API_LON = "lon"
+    const val WEATHER_API_UNITS = "units"
+    const val WEATHER_API_EXCLUDE = "exclude"
+    const val WEATHER_API_EXCLUDED_VALUE = "minutely,alerts"
+    const val WEATHER_API_ID = "appid"
+}

@@ -37,6 +37,8 @@ android {
 
 dependencies {
     def dagger2Ver = "2.41"
+    def retrofit2Ver = "2.9.0"
+    def rxJava3Ver = "3.0.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -56,4 +58,11 @@ dependencies {
     implementation ("com.google.dagger:dagger-android-support:$dagger2Ver")
     kapt ("com.google.dagger:dagger-compiler:$dagger2Ver")
     kapt ("com.google.dagger:dagger-android-processor:$dagger2Ver")
+    //retrofit2
+    implementation ("com.squareup.retrofit2:retrofit:$retrofit2Ver")
+    implementation ("com.squareup.retrofit2:converter-gson:$retrofit2Ver")
+    implementation ("com.squareup.retrofit2:adapter-rxjava3:$retrofit2Ver")
+    //rxjava
+    implementation ("io.reactivex.rxjava3:rxjava:$rxJava3Ver")
+    implementation ("io.reactivex.rxjava3:rxandroid:$rxJava3Ver")
 }
