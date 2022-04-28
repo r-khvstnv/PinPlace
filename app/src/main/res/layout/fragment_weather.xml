@@ -2,6 +2,7 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sr_weather_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.weather.WeatherFragment">
@@ -23,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/weather_inner_margin"
-                app:cardCornerRadius="@dimen/card_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -58,14 +58,14 @@
                         tools:text="Clear Cloudy" />
 
                     <TextView
-                        android:id="@+id/tv_day_part"
+                        android:id="@+id/tv_day_name"
                         style="@style/WeatherTextViewOnPrimaryCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/weather_day_part_text_size"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_weather_title"
-                        tools:text="@string/st_morning" />
+                        tools:text="Monday" />
 
                     <TextView
                         android:id="@+id/tv_temperature"
@@ -88,12 +88,12 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/_fl"
+                        android:id="@+id/tv_feels_like"
                         style="@style/WeatherTextViewOnPrimaryCard"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/weather_feels_like_size"
-                        app:layout_constraintStart_toStartOf="@id/tv_temperature"
+                        app:layout_constraintEnd_toEndOf="@id/_temperature_sign"
                         app:layout_constraintTop_toBottomOf="@id/tv_temperature"
                         tools:text="Feels like 30°" />
 
@@ -171,11 +171,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/weather_inner_margin"
                 android:layout_marginVertical="@dimen/weather_forecast_margin_vertical"
-                android:background="@color/sunrise"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_wind" />
+                app:layout_constraintTop_toBottomOf="@id/tv_wind"
+                tools:background="@color/sunrise" />
 
             <!--Sun State-->
             <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -185,14 +185,14 @@
                 android:layout_marginBottom="@dimen/weather_sun_state_progress_margin"
                 android:max="24"
                 app:indicatorColor="@color/sunrise"
-                app:layout_constraintBottom_toTopOf="@id/tv_sun_state_first"
-                app:layout_constraintEnd_toEndOf="@id/tv_sun_state_second"
-                app:layout_constraintStart_toStartOf="@id/tv_sun_state_first"
-                app:trackColor="@color/sunset"
+                app:layout_constraintBottom_toTopOf="@id/tv_sunrise"
+                app:layout_constraintEnd_toEndOf="@id/tv_sunset"
+                app:layout_constraintStart_toStartOf="@id/tv_sunrise"
+                app:trackColor="?attr/colorPrimary"
                 tools:background="@color/sunrise" />
 
             <TextView
-                android:id="@+id/tv_sun_state_first"
+                android:id="@+id/tv_sunrise"
                 style="@style/WeatherDetailsTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -203,13 +203,13 @@
                 tools:text="Sunrise 05:30" />
 
             <TextView
-                android:id="@+id/tv_sun_state_second"
+                android:id="@+id/tv_sunset"
                 style="@style/WeatherDetailsTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/weather_sun_states_margin_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_sun_state_first"
+                app:layout_constraintTop_toTopOf="@id/tv_sunrise"
                 tools:text="Sunset 05:30" />
 
             <com.google.android.material.card.MaterialCardView
@@ -222,7 +222,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_sun_state_first">
+                app:layout_constraintTop_toBottomOf="@id/tv_sunrise">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_day_forecast"

@@ -31,6 +31,10 @@ class WeatherViewModel @Inject constructor(
         fetchWeatherData()
     }
 
+    fun updateDishData(){
+        fetchWeatherData()
+    }
+
     private fun fetchWeatherData(){
         _inLoading.value = true
 
@@ -46,7 +50,7 @@ class WeatherViewModel @Inject constructor(
 
                     override fun onError(e: Throwable) {
                         _inLoading.value = false
-                        e.message?.let { Log.e("Test_message", it) }
+                        e.message?.let { Log.e("Test_message", it) }//todo
                     }
 
                 })
@@ -56,10 +60,13 @@ class WeatherViewModel @Inject constructor(
             e ->
             if (e is UndeliverableException){
                 e.message?.let {
-                    Log.e("Test_RxJava", it)
+                    Log.e("Test_RxJava", it)//todo
                 }
             }
         }
     }
+
+
+
 
 }

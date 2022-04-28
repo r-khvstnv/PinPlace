@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="AndroidLintSetTextI18n">
+        <ignore path="src/main/java/com/rkhvstnv/pinplace/ui/weather/WeatherFragment.kt" />
+        <ignore path="src/main/java/com/rkhvstnv/pinplace/ui/weather/WeatherFragment.kt" />
+    </issue>
+</lint>

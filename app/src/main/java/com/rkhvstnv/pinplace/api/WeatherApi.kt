@@ -11,6 +11,7 @@ interface WeatherApi {
     fun getWeatherData(
         @Query(Constants.WEATHER_API_LAT) lat: Double,
         @Query(Constants.WEATHER_API_LON) lon: Double,
+        @Query(Constants.WEATHER_API_UNITS) units: String,
         @Query(Constants.WEATHER_API_EXCLUDE) exclude: String,
         @Query(Constants.WEATHER_API_ID) id: String
     ): Single<WeatherModel>

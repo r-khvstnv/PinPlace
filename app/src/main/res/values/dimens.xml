@@ -27,6 +27,7 @@
     <!--Weather items-->
     <dimen name="hour_forecast_inner_padding">16dp</dimen>
     <dimen name="hour_forecast_inner_margin">5dp</dimen>
+    <dimen name="forecast_item_margin">5dp</dimen>
     <dimen name="hour_forecast_image_size">36dp</dimen>
     <dimen name="day_forecast_inner_padding">10dp</dimen>
     <dimen name="day_forecast_temperature_text_size">22sp</dimen>

@@ -1,6 +1,7 @@
 <resources>
     <color name="sunrise">#EFC977</color>
     <color name="sunset">#315DA8</color>
+    <color name="moonlight">#575E71</color>
 
 
     <color name="md_theme_light_primary">#315DA8</color>

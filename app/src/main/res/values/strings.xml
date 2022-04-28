@@ -8,10 +8,6 @@
     <!--Weather-->
     <string name="st_celsius">°C</string>
     <string name="st_celsius_sign">°</string>
-    <string name="st_morning">Morning</string>
-    <string name="st_afternoon">Afternoon</string>
-    <string name="st_evening">Evening</string>
-    <string name="st_night">Night</string>
     <string name="st_feels_like">Feels like</string>
     <string name="st_wind">Wind</string>
     <string name="st_humidity">Humidity</string>

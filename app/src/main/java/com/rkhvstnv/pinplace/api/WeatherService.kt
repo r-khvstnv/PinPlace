@@ -11,6 +11,7 @@ class WeatherService @Inject constructor(private val api: WeatherApi) {
         return  api.getWeatherData(
             lat = lat,
             lon = lon,
+            Constants.WEATHER_API_UNITS_VALUE,
             Constants.WEATHER_API_EXCLUDED_VALUE,
             Keys.WEATHER_API_KEY_VALUE
         )

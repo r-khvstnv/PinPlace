@@ -7,6 +7,7 @@ object Constants {
     const val WEATHER_API_LAT = "lat"
     const val WEATHER_API_LON = "lon"
     const val WEATHER_API_UNITS = "units"
+    const val WEATHER_API_UNITS_VALUE = "metric"
     const val WEATHER_API_EXCLUDE = "exclude"
     const val WEATHER_API_EXCLUDED_VALUE = "minutely,alerts"
     const val WEATHER_API_ID = "appid"
