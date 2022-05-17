@@ -11,4 +11,7 @@ object Constants {
     const val WEATHER_API_EXCLUDE = "exclude"
     const val WEATHER_API_EXCLUDED_VALUE = "minutely,alerts"
     const val WEATHER_API_ID = "appid"
+    //weather shared preferences
+    const val WEATHER_SHARED_PREF = "WeatherSharedPref"
+    const val WEATHER_SHARED_JSON_STRING = "WeatherSharedJsonString"
 }

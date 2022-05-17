@@ -2,7 +2,7 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sr_weather_layout"
+    android:id="@+id/sw_ref_weather_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.weather.WeatherFragment">
@@ -10,11 +10,24 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_weather"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_current_location"
+                style="@style/WeatherDetailsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/weather_curr_location_margin_top"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="UZ / Tashkent" />
 
 
             <!--Current Weather -->
@@ -26,7 +39,7 @@
                 android:layout_margin="@dimen/weather_inner_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/tv_current_location">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -42,10 +55,10 @@
                         android:minWidth="@dimen/weather_image_size"
                         android:minHeight="@dimen/weather_image_size"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_clear_cloudy"
                         app:layout_constraintBottom_toBottomOf="@id/tv_temperature"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_temperature" />
+                        app:layout_constraintTop_toTopOf="@id/tv_temperature"
+                        tools:src="@drawable/ic_clear_cloudy" />
 
                     <TextView
                         android:id="@+id/tv_weather_title"
@@ -96,10 +109,8 @@
                         app:layout_constraintEnd_toEndOf="@id/_temperature_sign"
                         app:layout_constraintTop_toBottomOf="@id/tv_temperature"
                         tools:text="Feels like 30°" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
-
 
             <!--Weather Details-->
             <TextView
@@ -212,6 +223,7 @@
                 app:layout_constraintTop_toTopOf="@id/tv_sunrise"
                 tools:text="Sunset 05:30" />
 
+            <!--Day Forecast-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/_card_rv"
                 style="@style/WeatherCardViewSecondary"

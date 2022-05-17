@@ -1,5 +1,8 @@
 package com.rkhvstnv.pinplace.utils
 
+import android.content.Context
+import android.location.Address
+import android.location.Geocoder
 import androidx.annotation.DrawableRes
 import com.rkhvstnv.pinplace.R
 import com.rkhvstnv.pinplace.model.SunriseModel
@@ -56,5 +59,14 @@ object WeatherUtils {
         val progress: Int = (((curTime / 1000L) - _sunrise) / 3600L).toInt()
 
         return SunriseModel(sunrise = sunrise, sunset = sunset, progress, max)
+    }
+
+    fun getAddressFromLocation(
+        context: Context,
+        lat: Double,
+        lon: Double,
+        maxAddresses: Int): MutableList<Address>{
+        val geo = Geocoder(context, Locale.getDefault())
+        return geo.getFromLocation(lat, lon, maxAddresses)
     }
 }
