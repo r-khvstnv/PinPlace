@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object WeatherUtils {
+    /**Method get corresponding image to weather id*/
     @DrawableRes
     fun setRightImage(id: Int): Int{
         return when(id){

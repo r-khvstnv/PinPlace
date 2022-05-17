@@ -35,5 +35,21 @@
     <dimen name="day_forecast_text_size">18sp</dimen>
 
 
-
+    <!--All places-->
+    <dimen name="fab_margin">20dp</dimen>
+    <!--Add Place-->
+    <dimen name="add_place_layout_margin">16dp</dimen>
+    <dimen name="add_place_image_size">200dp</dimen>
+    <dimen name="add_place_text_layout_margin_top">10dp</dimen>
+    <dimen name="add_place_current_btn_margin">10dp</dimen>
+    <dimen name="add_place_btn_margin_top">50dp</dimen>
+    <dimen name="add_place_btn_margin_bottom">10dp</dimen>
+    <!--Place Details-->
+    <dimen name="place_details_margin_horizontal">16dp</dimen>
+    <dimen name="place_details_title_text_size">36sp</dimen>
+    <dimen name="place_details_subtitles_text_size">22sp</dimen>
+    <dimen name="place_details_text_size">18sp</dimen>
+    <dimen name="place_details_text_margin_top">5dp</dimen>
+    <dimen name="place_details_subtitle_margin_top">20dp</dimen>
+    <dimen name="place_details_date_text_size">14sp</dimen>
 </resources>

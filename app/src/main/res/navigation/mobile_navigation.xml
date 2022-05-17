@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_weather">
+    app:startDestination="@id/navigation_all_places">
 
     <fragment
         android:id="@+id/navigation_weather"
@@ -12,14 +12,35 @@
         tools:layout="@layout/fragment_weather" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.rkhvstnv.pinplace.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_all_places"
+        android:name="com.rkhvstnv.pinplace.ui.allplaces.AllPlacesFragment"
+        android:label="@string/title_all_places"
+        tools:layout="@layout/fragment_all_places">
+        <action
+            android:id="@+id/action_navigation_all_places_to_navigation_add_place"
+            app:destination="@id/navigation_add_place"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_all_places_to_navigation_place_details"
+            app:destination="@id/navigation_place_details"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.rkhvstnv.pinplace.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_add_place"
+        android:name="com.rkhvstnv.pinplace.ui.addplace.AddPlaceFragment"
+        android:label="@string/title_add_place"
+        tools:layout="@layout/fragment_add_place" />
+
+    <fragment
+        android:id="@+id/navigation_place_details"
+        android:name="com.rkhvstnv.pinplace.ui.placedetails.PlaceDetailsFragment"
+        android:label="@string/title_place_details"
+        tools:layout="@layout/fragment_place_details" />
 </navigation>

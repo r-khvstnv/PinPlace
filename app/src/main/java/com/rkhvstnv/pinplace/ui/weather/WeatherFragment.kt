@@ -248,7 +248,7 @@ class WeatherFragment : BaseFragment() {
 
 
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
+        super.onDestroyView()
     }
 }

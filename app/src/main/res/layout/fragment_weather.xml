@@ -199,8 +199,7 @@
                 app:layout_constraintBottom_toTopOf="@id/tv_sunrise"
                 app:layout_constraintEnd_toEndOf="@id/tv_sunset"
                 app:layout_constraintStart_toStartOf="@id/tv_sunrise"
-                app:trackColor="?attr/colorPrimary"
-                tools:background="@color/sunrise" />
+                app:trackColor="?attr/colorPrimary" />
 
             <TextView
                 android:id="@+id/tv_sunrise"

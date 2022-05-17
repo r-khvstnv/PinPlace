@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Pin Place</string>
     <string name="title_weather">Weather</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_all_places">All Places</string>
+    <string name="title_place_details">Place Details</string>
+    <string name="title_add_place">Add Place</string>
 
 
     <!--Weather-->
@@ -18,4 +19,12 @@
     <string name="st_sunrise">Sunrise</string>
     <string name="st_sunset">Sunset</string>
     <string name="st_permission_is_not_granted">Permission required for this Feature is Not Granted</string>
+
+    <!--Places-->
+    <string name="st_title">Title</string>
+    <string name="st_description">Description</string>
+    <string name="st_date">Date</string>
+    <string name="st_location">Location</string>
+    <string name="st_current">Current</string>
+    <string name="st_add_image">Add Image</string>
 </resources>

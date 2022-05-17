@@ -33,4 +33,13 @@
     <style name="WeatherTextViewOnSecondaryCard" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">?attr/colorOnSecondary</item>
     </style>
+
+
+    <style name="PlaceTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">?attr/colorSurface</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
