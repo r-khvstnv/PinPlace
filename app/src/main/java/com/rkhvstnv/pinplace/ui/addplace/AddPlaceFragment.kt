@@ -91,21 +91,25 @@ class AddPlaceFragment : BaseFragment() {
             btnCurrentLocation.setOnClickListener {
                 currentLocationLauncher()
             }
-        }
-
-
-        viewModel.imagePath.observe(viewLifecycleOwner){
-            Log.i("Test", it)
+            btnAddPlace.setOnClickListener {
+                if (isUserInputIsValid()){
+                    //todo save new place
+                }
+            }
         }
     }
 
 
+
+    /**Method set current date in millis to mutableLiveDate in viewModel and
+     * formatted one to UI*/
     private fun setCurrentDate(){
         val date = System.currentTimeMillis()
         viewModel.setDateL(date)
         binding.etDate.setText(PlaceUtils.formatToDate(date))
     }
 
+    /**Method show Calendar Dialog, where user can set date*/
     private fun setDateFromCalendar(){
         val calendar = Calendar.getInstance()
         val dateSetListener = DatePickerDialog.OnDateSetListener {
@@ -120,6 +124,10 @@ class AddPlaceFragment : BaseFragment() {
     }
 
 
+    /**Method overrides callback from existed location launcher, where already has been implemented
+     * selfPermissionCheck
+     * onLocationResult set received lat and lon to mutableLiveDate
+     * and they formatted form to UI*/
     private fun currentLocationLauncher() = requestCurrentLocation(object : LocationListener{
         override fun onLocationResult(result: LocationResult) {
             val location = result.lastLocation
@@ -132,6 +140,8 @@ class AddPlaceFragment : BaseFragment() {
     })
 
 
+    /**Method show card with gallery & camera options,
+     * after click on someone, will hide card and execute corresponding launcher*/
     private fun imageSourcePicker(){
         with(binding){
             mcvImageSource.visibility = View.VISIBLE
@@ -147,6 +157,9 @@ class AddPlaceFragment : BaseFragment() {
         }
     }
 
+
+    /**Result handler for storage permission. If permission is granted it calls
+     * galleryLauncher()*/
     private val storagePermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ){ isGranted: Boolean ->
@@ -157,6 +170,8 @@ class AddPlaceFragment : BaseFragment() {
         }
     }
 
+    /**Method request gallery, previously checked that permission for this purpose is granted.
+     * Otherwise will request permission*/
     private fun galleryLauncher(){
         when{
             ContextCompat.checkSelfPermission(
@@ -173,6 +188,9 @@ class AddPlaceFragment : BaseFragment() {
         }
     }
 
+    /**Method handles result of galleryLauncher.
+     * If RESULT_OK, it will load bitmap to corresponding UI element and
+     * saves bitmap in internal storage of app*/
     private val galleryResultLauncher =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -216,6 +234,8 @@ class AddPlaceFragment : BaseFragment() {
         }
 
 
+    /**Result handler for storage permission. If permission is granted it calls
+     * cameraLauncher()*/
     private val cameraPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ){ isGranted: Boolean ->
@@ -226,6 +246,8 @@ class AddPlaceFragment : BaseFragment() {
         }
     }
 
+    /**Method request camera, previously checked that permission for this purpose is granted.
+     * Otherwise will request permission*/
     private fun cameraLauncher(){
         when{
             ContextCompat.checkSelfPermission(
@@ -242,6 +264,9 @@ class AddPlaceFragment : BaseFragment() {
         }
     }
 
+    /**Method handles result of cameraLauncher.
+     * If RESULT_OK, it will load bitmap to corresponding UI element and
+     * saves bitmap in internal storage of app*/
     private val cameraResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         result ->
@@ -256,7 +281,7 @@ class AddPlaceFragment : BaseFragment() {
     }
 
 
-    /**Method saves image to internal package storage and assigns it's imagePath*/
+    /**Method saves image to internal package storage and assigns it's imagePath in viewModel*/
     private fun saveImageToInternalStorage(bitmap: Bitmap){
         val wrapper = ContextWrapper(context?.applicationContext)
 
@@ -285,32 +310,42 @@ class AddPlaceFragment : BaseFragment() {
             Place.Field.LAT_LNG, Place.Field.ADDRESS
         )
 
-        val autocompleteIntent = Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(requireContext())
+        val autocompleteIntent = Autocomplete.IntentBuilder(
+            AutocompleteActivityMode.OVERLAY, fields
+        ).build(requireContext())
+
         autocompleteResultLauncher.launch(autocompleteIntent)
     }
 
-    private val autocompleteResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        result ->
-        if (result.resultCode == Activity.RESULT_OK){
-            result.data?.let {
-                    intent ->
-                val place: Place = Autocomplete.getPlaceFromIntent(intent)
-                place.latLng?.let {
-                    viewModel.setLatLon(it.latitude, it.longitude)
-                    binding.etLocation.setText(
-                        place.address
-                    )
+    /**Method handles result of autocompletedPlaceLauncher.
+     * If RESULT_OK, it will load address to corresponding UI element and
+     * assigns latitude and longitude in viewModel*/
+    private val autocompleteResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+                result ->
+            if (result.resultCode == Activity.RESULT_OK){
+                result.data?.let {
+                        intent ->
+                    val place: Place = Autocomplete.getPlaceFromIntent(intent)
+                    place.latLng?.let {
+                        viewModel.setLatLon(it.latitude, it.longitude)
+                        binding.etLocation.setText(
+                            place.address
+                        )
+                    }
+                }
+            } else if (result.resultCode == AutocompleteActivity.RESULT_ERROR){
+                result.data?.let {
+                    val status = Autocomplete.getStatusFromIntent(it)
+                    showSnackMessage(status.statusMessage ?: status.statusCode.toString())
                 }
             }
-        } else if (result.resultCode == AutocompleteActivity.RESULT_ERROR){
-            result.data?.let {
-                val status = Autocomplete.getStatusFromIntent(it)
-                showSnackMessage(status.statusMessage ?: status.statusCode.toString())
-            }
-        }
     }
 
 
+    /**Method firstly request error resetting and after
+     * will check that fields and imagePath are not empty.
+     * Otherwise show error message in corresponding field*/
     private fun isUserInputIsValid(): Boolean{
         var result = false
         val error: String = getString(R.string.error_empty_field)
@@ -330,13 +365,15 @@ class AddPlaceFragment : BaseFragment() {
 
         return result
     }
+
+    /**Next method reset errors in all available fields*/
     private fun resetFieldsErrors(){
         with(binding){
             tvAddImage.visibility = View.GONE
-            tilTitle.isErrorEnabled = false
-            tilDate.isErrorEnabled = false
-            tilLocation.isErrorEnabled = false
-            tilDescription.isErrorEnabled = false
+            etTitle.error = null
+            etDate.error = null
+            etLocation.error = null
+            etDescription.error = null
         }
     }
 

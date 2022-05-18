@@ -16,5 +16,6 @@ object Constants {
     const val WEATHER_SHARED_JSON_STRING = "WeatherSharedJsonString"
 
 
+
     const val PLACE_IMAGE_DIRECTORY = "PinPlaceImage"
 }

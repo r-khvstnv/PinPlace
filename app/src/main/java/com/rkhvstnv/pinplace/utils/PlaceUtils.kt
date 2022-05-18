@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object PlaceUtils {
+
     fun formatToDate(time: Long): String{
         val date = Date(time)
         val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
