@@ -39,8 +39,10 @@
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_wind_speed.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_windy.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/dialog_image_source.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_add_place.xml" value="0.264" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_all_places.xml" value="0.25" />
+        <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_autocomplete.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_maps.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_place_details.xml" value="0.2359375" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_weather.xml" value="0.264" />

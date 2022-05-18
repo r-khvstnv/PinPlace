@@ -14,4 +14,7 @@ object Constants {
     //weather shared preferences
     const val WEATHER_SHARED_PREF = "WeatherSharedPref"
     const val WEATHER_SHARED_JSON_STRING = "WeatherSharedJsonString"
+
+
+    const val PLACE_IMAGE_DIRECTORY = "PinPlaceImage"
 }

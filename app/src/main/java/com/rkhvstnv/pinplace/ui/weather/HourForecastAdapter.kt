@@ -10,7 +10,7 @@ import com.rkhvstnv.pinplace.R
 import com.rkhvstnv.pinplace.databinding.ItemHourForecastBinding
 import com.rkhvstnv.pinplace.model.Hourly
 import com.rkhvstnv.pinplace.utils.WeatherUtils
-import com.rkhvstnv.pinplace.utils.loadImage
+import com.rkhvstnv.pinplace.utils.loadIntImage
 
 class HourForecastAdapter(private val context: Context
 ): RecyclerView.Adapter<HourForecastAdapter.ViewHolder>() {
@@ -35,7 +35,7 @@ class HourForecastAdapter(private val context: Context
         with(holder.binding){
             tvTemperatureHf.text =
                 item.temp.toInt().toString() + context.getString(R.string.st_celsius_sign)
-            ivWeatherImageHf.loadImage(WeatherUtils.setRightImage(item.weather[0].id))
+            ivWeatherImageHf.loadIntImage(WeatherUtils.setRightImage(item.weather[0].id))
             tvWindSpeedHf.text =
                 WeatherUtils.getRoundedDouble(item.wind_speed) + context.getString(R.string.st_km_per_hour)
 

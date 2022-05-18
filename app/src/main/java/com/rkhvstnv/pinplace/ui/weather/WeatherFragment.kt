@@ -1,21 +1,13 @@
 package com.rkhvstnv.pinplace.ui.weather
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
-import android.content.pm.PackageManager
-import android.location.LocationManager
 import android.os.Bundle
-import android.os.Looper
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.edit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -31,7 +23,7 @@ import com.rkhvstnv.pinplace.ui.BaseFragment
 import com.rkhvstnv.pinplace.utils.Constants
 import com.rkhvstnv.pinplace.utils.WeatherUtils
 import com.rkhvstnv.pinplace.utils.appComponent
-import com.rkhvstnv.pinplace.utils.loadImage
+import com.rkhvstnv.pinplace.utils.loadIntImage
 import javax.inject.Inject
 
 class WeatherFragment : BaseFragment() {
@@ -74,12 +66,7 @@ class WeatherFragment : BaseFragment() {
         setupHourForecastRv()
         setupDayForecastRv()
 
-        /*Check that GPS functionality is enabled*/
-        if (isLocationFunctionalityEnabled()){
-            requestCurrentLocation()
-        } else{
-            requestLocationSettings()
-        }
+        currentLocationLauncher()
 
 
         viewModel.inLoading.observe(viewLifecycleOwner){
@@ -100,9 +87,7 @@ class WeatherFragment : BaseFragment() {
 
 
         binding.swRefWeatherLayout.setOnRefreshListener {
-            if (isLocationFunctionalityEnabled()){
-                requestCurrentLocation()
-            }
+            currentLocationLauncher()
         }
     }
 
@@ -123,9 +108,8 @@ class WeatherFragment : BaseFragment() {
             address[0].let {
                 tvCurrentLocation.text = it.countryCode + " / " + it.locality
             }
-
             //Card view with current weather data
-            ivWeatherImage.loadImage(WeatherUtils.setRightImage(cWeather.id))
+            ivWeatherImage.loadIntImage(WeatherUtils.setRightImage(cWeather.id))
             tvWeatherTitle.text = cWeather.main
             tvDayName.text = WeatherUtils.getDayName(System.currentTimeMillis() / 1000L)
             tvTemperature.text = current.temp.toInt().toString()
@@ -193,59 +177,13 @@ class WeatherFragment : BaseFragment() {
         }
     }
 
-    //Fine Location Permission launcher
-    private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()){
-        isGranted ->
-            if (isGranted){
-                requestCurrentLocation()
-            } else{
-                showSnackMessage(getString(R.string.st_permission_is_not_granted))
-            }
-    }
 
-    /**Method checks that GPS and Network functionality is enabled*/
-    private fun isLocationFunctionalityEnabled(): Boolean{
-        //access to the system location services
-        val locationManager: LocationManager =
-            getSystemService(requireContext(), LocationManager::class.java)!!
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-    }
-
-    /**Method requests location setting for current app*/
-    private fun requestLocationSettings(){
-        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-        startActivity(intent)
-    }
-
-    /**Method requests current location data and on success request weather update.
-     * Inside the method is implemented selfPermission checking */
-    private fun requestCurrentLocation(){
-        val fusedLocationClient: FusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(requireContext())
-        val locationRequest = LocationRequest
-            .create()
-            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-        val locationCallback = object : LocationCallback(){
-            override fun onLocationResult(result: LocationResult) {
-                result.lastLocation.let {
-                    viewModel.updateCurrentLocation(it.latitude, it.longitude)
-                }
-                fusedLocationClient.removeLocationUpdates(this)
-            }
+    private fun currentLocationLauncher() = requestCurrentLocation(object : LocationListener{
+        override fun onLocationResult(result: LocationResult) {
+            val location = result.lastLocation
+            viewModel.updateCurrentLocation(location.latitude, location.longitude)
         }
-
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            fusedLocationClient
-                .requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()!!)
-        } else{
-            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-        }
-    }
-
+    })
 
     override fun onDestroyView() {
         _binding = null

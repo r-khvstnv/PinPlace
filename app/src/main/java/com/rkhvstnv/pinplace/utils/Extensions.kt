@@ -1,13 +1,11 @@
 package com.rkhvstnv.pinplace.utils
 
 import android.content.Context
-import android.location.Address
-import android.location.Geocoder
+import android.graphics.Bitmap
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.rkhvstnv.pinplace.di.PinPlaceApplication
 import com.rkhvstnv.pinplace.di.app.AppComponent
-import java.util.*
 
 val Context.appComponent: AppComponent
     get() = when(this){
@@ -15,6 +13,10 @@ val Context.appComponent: AppComponent
         else -> this.applicationContext.appComponent
     }
 
-fun ImageView.loadImage(imageInt: Int){
-    Glide.with(context).load(imageInt).centerInside().into(this)
+fun ImageView.loadIntImage(int: Int){
+    Glide.with(context).load(int).centerInside().into(this)
+}
+
+fun ImageView.loadBitmapImage(image: Bitmap){
+    Glide.with(context).load(image).centerCrop().into(this)
 }

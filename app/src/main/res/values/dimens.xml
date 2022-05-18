@@ -44,6 +44,9 @@
     <dimen name="add_place_current_btn_margin">10dp</dimen>
     <dimen name="add_place_btn_margin_top">50dp</dimen>
     <dimen name="add_place_btn_margin_bottom">10dp</dimen>
+    <dimen name="add_place_image_source_internal_margin">10dp</dimen>
+    <dimen name="add_place_image_source_margin_top">10dp</dimen>
+    <dimen name="dialog_autocomplete_margin">30dp</dimen>
     <!--Place Details-->
     <dimen name="place_details_margin_horizontal">16dp</dimen>
     <dimen name="place_details_title_text_size">36sp</dimen>

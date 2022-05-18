@@ -9,7 +9,7 @@ import com.rkhvstnv.pinplace.R
 import com.rkhvstnv.pinplace.databinding.ItemDayForecastBinding
 import com.rkhvstnv.pinplace.model.Daily
 import com.rkhvstnv.pinplace.utils.WeatherUtils
-import com.rkhvstnv.pinplace.utils.loadImage
+import com.rkhvstnv.pinplace.utils.loadIntImage
 
 class DayForecastAdapter(private val context: Context
 ): RecyclerView.Adapter<DayForecastAdapter.ViewHolder>() {
@@ -36,7 +36,7 @@ class DayForecastAdapter(private val context: Context
         val cSign = context.getString(R.string.st_celsius_sign)
 
         with(holder.binding){
-            ivWeatherImageDf.loadImage(WeatherUtils.setRightImage(item.weather[0].id))
+            ivWeatherImageDf.loadIntImage(WeatherUtils.setRightImage(item.weather[0].id))
 
             tvDayDf.text = WeatherUtils.getDayName(item.dt.toLong())
             tvWeatherTitleDf.text = item.weather[0].main
