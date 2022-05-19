@@ -1,9 +1,9 @@
-package com.rkhvstnv.pinplace.di.viewmodel
+package com.rkhvstnv.pinplace.di.module
 
 import androidx.lifecycle.ViewModel
+import com.rkhvstnv.pinplace.di.factory.ViewModelKey
 import com.rkhvstnv.pinplace.ui.addplace.AddPlaceViewModel
 import com.rkhvstnv.pinplace.ui.allplaces.AllPlacesViewModel
-import com.rkhvstnv.pinplace.ui.placedetails.PlaceDetailsFragment
 import com.rkhvstnv.pinplace.ui.placedetails.PlaceDetailsViewModel
 import com.rkhvstnv.pinplace.ui.weather.WeatherViewModel
 import dagger.Binds

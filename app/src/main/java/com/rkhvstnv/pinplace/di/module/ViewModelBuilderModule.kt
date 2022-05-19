@@ -1,6 +1,7 @@
-package com.rkhvstnv.pinplace.di.viewmodel
+package com.rkhvstnv.pinplace.di.module
 
 import androidx.lifecycle.ViewModelProvider
+import com.rkhvstnv.pinplace.di.factory.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 

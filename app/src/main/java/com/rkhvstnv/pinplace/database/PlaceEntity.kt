@@ -1,6 +1,6 @@
-package com.rkhvstnv.pinplace.model
+package com.rkhvstnv.pinplace.database
 
-data class PlaceModel(
+data class PlaceEntity(
     val imageSource: String,
     val title: String,
     val description: String,

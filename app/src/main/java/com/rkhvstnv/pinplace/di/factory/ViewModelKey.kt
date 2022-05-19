@@ -1,4 +1,4 @@
-package com.rkhvstnv.pinplace.di.viewmodel
+package com.rkhvstnv.pinplace.di.factory
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

@@ -1,4 +1,4 @@
-package com.rkhvstnv.pinplace.di.network
+package com.rkhvstnv.pinplace.di.module
 
 import com.rkhvstnv.pinplace.api.WeatherApi
 import com.rkhvstnv.pinplace.api.WeatherService

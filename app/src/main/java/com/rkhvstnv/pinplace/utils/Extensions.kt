@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.rkhvstnv.pinplace.di.PinPlaceApplication
-import com.rkhvstnv.pinplace.di.app.AppComponent
+import com.rkhvstnv.pinplace.di.component.AppComponent
 
 val Context.appComponent: AppComponent
     get() = when(this){
