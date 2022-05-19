@@ -1,15 +1,14 @@
 package com.rkhvstnv.pinplace.ui.allplaces
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigator
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.rkhvstnv.pinplace.R
 import com.rkhvstnv.pinplace.databinding.FragmentAllPlacesBinding
@@ -34,7 +33,7 @@ class AllPlacesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAllPlacesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,10 +47,19 @@ class AllPlacesFragment : Fragment() {
             )
         }
 
+        //TODO TEST IMPL
         binding.testDetails.setOnClickListener {
             findNavController().navigate(
                 R.id.action_navigation_all_places_to_navigation_place_details
             )
+        }
+        viewModel.allPlaces.observe(viewLifecycleOwner){
+            list ->
+            list?.let {
+                for (item in it){
+                    Log.i("Test", item.toString())
+                }
+            }
         }
     }
 
@@ -59,5 +67,4 @@ class AllPlacesFragment : Fragment() {
         _binding = null
         super.onDestroyView()
     }
-
 }

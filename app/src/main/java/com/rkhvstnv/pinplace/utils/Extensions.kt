@@ -17,6 +17,6 @@ fun ImageView.loadIntImage(int: Int){
     Glide.with(context).load(int).centerInside().into(this)
 }
 
-fun ImageView.loadBitmapImage(image: Bitmap){
-    Glide.with(context).load(image).centerCrop().into(this)
+fun ImageView.loadImage(path: String){
+    Glide.with(context).load(path).centerCrop().into(this)
 }

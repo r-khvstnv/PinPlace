@@ -18,4 +18,6 @@ object Constants {
 
 
     const val PLACE_IMAGE_DIRECTORY = "PinPlaceImage"
+    const val PLACE_ID = "id"
+    const val PLACE_TABLE_NAME = "places_table"
 }

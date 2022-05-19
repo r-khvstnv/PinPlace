@@ -41,6 +41,7 @@ dependencies {
     def retrofit2Ver = "2.9.0"
     def rxJava3Ver = "3.0.0"
     def camerax_version = "1.1.0-rc01"
+    def roomVer = "2.4.2"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -77,4 +78,7 @@ dependencies {
     implementation "androidx.camera:camera-camera2:${camerax_version}"
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
     implementation "androidx.camera:camera-view:${camerax_version}"
+    //room
+    implementation "androidx.room:room-ktx:$roomVer"
+    kapt "androidx.room:room-compiler:$roomVer"
 }

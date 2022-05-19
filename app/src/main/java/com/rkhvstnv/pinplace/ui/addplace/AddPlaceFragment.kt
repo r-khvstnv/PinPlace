@@ -8,25 +8,19 @@ import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
+import android.graphics.ImageDecoder
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.LocationResult
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -40,7 +34,7 @@ import com.rkhvstnv.pinplace.ui.BaseFragment
 import com.rkhvstnv.pinplace.utils.Constants
 import com.rkhvstnv.pinplace.utils.PlaceUtils
 import com.rkhvstnv.pinplace.utils.appComponent
-import com.rkhvstnv.pinplace.utils.loadBitmapImage
+import com.rkhvstnv.pinplace.utils.loadImage
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
@@ -92,9 +86,22 @@ class AddPlaceFragment : BaseFragment() {
                 currentLocationLauncher()
             }
             btnAddPlace.setOnClickListener {
-                if (isUserInputIsValid()){
-                    //todo save new place
-                }
+                requestPlaceSaving()
+            }
+        }
+
+        viewModel.isSaved.observe(viewLifecycleOwner){
+            success ->
+            if (success){
+                showSnackMessage(getString(R.string.st_saved_successfully))
+                findNavController().popBackStack()
+            }
+        }
+        viewModel.imagePath.observe(viewLifecycleOwner){
+            image ->
+            image?.let {
+                binding.ivImage.loadImage(it)
+                binding.tvAddImage.visibility = View.GONE
             }
         }
     }
@@ -178,7 +185,8 @@ class AddPlaceFragment : BaseFragment() {
                 requireContext(),
                 Manifest.permission.READ_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED -> {
-                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                val galleryIntent = Intent(
+                    Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 galleryResultLauncher.launch(galleryIntent)
             }
             else -> {
@@ -197,38 +205,14 @@ class AddPlaceFragment : BaseFragment() {
         ){ result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let {
-                    Glide
-                        .with(this)
-                        .load(it)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .listener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                Log.e("Glide", "Image loading", e)
-                                return false
-                            }
-
-                            override fun onResourceReady(
-                                resource: Drawable?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                dataSource: DataSource?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                //save image bitmap
-                                resource?.let {
-                                    saveImageToInternalStorage(resource.toBitmap())
-                                }
-                                binding.tvAddImage.visibility = View.GONE
-                                return false
-                            }
-                        })
-                        .into(binding.ivImage)
+                    val tmpBitmap: Bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        ImageDecoder.decodeBitmap(
+                            ImageDecoder.createSource(requireContext().contentResolver, it))
+                    } else {
+                        @Suppress("DEPRECATION")
+                        MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
+                    }
+                    saveImageToInternalStorage(tmpBitmap)
                 }
             }
         }
@@ -273,8 +257,6 @@ class AddPlaceFragment : BaseFragment() {
             if (result.resultCode == Activity.RESULT_OK){
                 result.data?.extras?.let {
                     val tmpBitmap = it.get("data") as Bitmap
-                    binding.ivImage.loadBitmapImage(tmpBitmap)
-                    binding.tvAddImage.visibility = View.GONE
                     saveImageToInternalStorage(tmpBitmap)
                 }
             }
@@ -374,6 +356,21 @@ class AddPlaceFragment : BaseFragment() {
             etDate.error = null
             etLocation.error = null
             etDescription.error = null
+        }
+    }
+
+
+    /**Method firstly checks, that all fields are filled.
+     * If true, then request place saving */
+    private fun requestPlaceSaving(){
+        if (isUserInputIsValid()){
+            with(binding){
+                viewModel.addPlace(
+                    etTitle.text.toString(),
+                    etDescription.text.toString(),
+                    etLocation.text.toString()
+                )
+            }
         }
     }
 
