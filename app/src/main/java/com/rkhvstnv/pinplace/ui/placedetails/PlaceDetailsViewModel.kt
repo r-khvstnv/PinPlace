@@ -14,6 +14,8 @@ class PlaceDetailsViewModel @Inject constructor(private val repository: PlaceRep
     lateinit var place: LiveData<PlaceEntity>
     private val _isDeleted = MutableLiveData<Boolean>(false)
     val isDeleted: LiveData<Boolean> get() = _isDeleted
+    private val _isMapVisible = MutableLiveData<Boolean>(false)
+    val isMapVisible: LiveData<Boolean> get() = _isMapVisible
 
     fun requestPlace(id: Int){
         place = repository.getPlaceById(id = id)
@@ -25,6 +27,12 @@ class PlaceDetailsViewModel @Inject constructor(private val repository: PlaceRep
                 repository.deletePlace(place.value!!)
                 _isDeleted.value = true
             }
+        }
+    }
+
+    fun flipMapVisibilityState(){
+        _isMapVisible.value?.let {
+            _isMapVisible.value = !it
         }
     }
 }

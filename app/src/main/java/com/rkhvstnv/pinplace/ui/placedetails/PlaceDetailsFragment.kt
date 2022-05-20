@@ -5,18 +5,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.rkhvstnv.pinplace.R
 import com.rkhvstnv.pinplace.databinding.FragmentPlaceDetailsBinding
+import com.rkhvstnv.pinplace.ui.BaseFragment
 import com.rkhvstnv.pinplace.utils.PlaceUtils
 import com.rkhvstnv.pinplace.utils.appComponent
 import com.rkhvstnv.pinplace.utils.loadImage
 import javax.inject.Inject
 
-class PlaceDetailsFragment : Fragment() {
+class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
     private var _binding: FragmentPlaceDetailsBinding? = null
     private val binding get() = _binding!!
     private val args: PlaceDetailsFragmentArgs by navArgs()
@@ -35,13 +43,20 @@ class PlaceDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPlaceDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.placeOnMap.apply {
+            getMapAsync(this@PlaceDetailsFragment)
+            onCreate(savedInstanceState)
+        }
+
+
 
         args.placeId.let {
             id ->
@@ -63,6 +78,20 @@ class PlaceDetailsFragment : Fragment() {
             }
         }
 
+        viewModel.isMapVisible.observe(viewLifecycleOwner){
+            isVisible ->
+            Toast.makeText(requireContext(), isVisible.toString(), Toast.LENGTH_SHORT).show()
+            with(binding){
+                if (isVisible){
+                    ivPlaceDetailsImage.visibility = View.GONE
+                    fabMap.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_image_24))
+                } else{
+                    ivPlaceDetailsImage.visibility = View.VISIBLE
+                    fabMap.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_place_24))
+                }
+            }
+        }
+
         viewModel.isDeleted.observe(viewLifecycleOwner){
             success ->
             if (success){
@@ -73,11 +102,53 @@ class PlaceDetailsFragment : Fragment() {
         binding.btnDelete.setOnClickListener {
             viewModel.requestPlaceDeleting()
         }
+
+        binding.fabMap.setOnClickListener {
+            viewModel.flipMapVisibilityState()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.placeOnMap.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.placeOnMap.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.placeOnMap.onPause()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        binding.placeOnMap.onSaveInstanceState(outState)
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        binding.placeOnMap.onLowMemory()
     }
 
     override fun onDestroyView() {
+        binding.placeOnMap.onDestroy()
         _binding = null
         super.onDestroyView()
+    }
+
+    override fun onMapReady(gm: GoogleMap) {
+        viewModel.place.observe(viewLifecycleOwner){
+                p ->
+            p?.let {
+                val latLng = LatLng(it.lat, it.lon)
+                gm.addMarker(MarkerOptions().position(latLng).title(it.title))
+                val latLngZoom = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
+                gm.animateCamera(latLngZoom)
+            }
+        }
     }
 
 }
