@@ -55,4 +55,11 @@
     <dimen name="place_details_text_margin_top">5dp</dimen>
     <dimen name="place_details_subtitle_margin_top">20dp</dimen>
     <dimen name="place_details_date_text_size">14sp</dimen>
+    <!--Place Item-->
+    <dimen name="item_place_title_text_size">24sp</dimen>
+    <dimen name="item_place_location_text_size">18sp</dimen>
+    <dimen name="item_place_inner_margin_horizontal">10dp</dimen>
+    <dimen name="item_place_inner_margin_vertical">8dp</dimen>
+    <dimen name="item_place_card_margin">5dp</dimen>
+    <dimen name="item_place_image_height">200dp</dimen>
 </resources>

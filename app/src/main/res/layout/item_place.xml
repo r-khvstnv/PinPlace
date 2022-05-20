@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/PlacesCardViewDefault"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/item_place_card_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_place_image_item"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_place_image_height"
+            android:contentDescription="@string/st_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="?attr/colorPrimary" />
+
+        <ImageView
+            android:id="@+id/_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/item_place_inner_margin_horizontal"
+            android:layout_marginTop="@dimen/item_place_inner_margin_vertical"
+            android:contentDescription="@string/st_description"
+            android:src="@drawable/ic_place_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_place_image_item" />
+
+        <TextView
+            android:id="@+id/tv_place_title_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/item_place_inner_margin_horizontal"
+            android:textSize="@dimen/item_place_title_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/_location"
+            tools:text="@tools:sample/cities" />
+
+        <TextView
+            android:id="@+id/tv_place_location_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/item_place_inner_margin_horizontal"
+            android:layout_marginBottom="@dimen/item_place_inner_margin_vertical"
+            android:textSize="@dimen/item_place_location_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_place_title_item"
+            tools:text="7 Taras Shevchenko, Tashkent, Uzbekistan" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

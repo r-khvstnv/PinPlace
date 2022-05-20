@@ -42,5 +42,10 @@
         android:id="@+id/navigation_place_details"
         android:name="com.rkhvstnv.pinplace.ui.placedetails.PlaceDetailsFragment"
         android:label="@string/title_place_details"
-        tools:layout="@layout/fragment_place_details" />
+        tools:layout="@layout/fragment_place_details" >
+        <argument
+            android:name="place_id"
+            app:argType="integer"
+            android:defaultValue="-5" />
+    </fragment>
 </navigation>

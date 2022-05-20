@@ -2,22 +2,25 @@ package com.rkhvstnv.pinplace.ui.allplaces
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rkhvstnv.pinplace.R
 import com.rkhvstnv.pinplace.databinding.FragmentAllPlacesBinding
+import com.rkhvstnv.pinplace.utils.ItemPlaceCallback
 import com.rkhvstnv.pinplace.utils.appComponent
 import javax.inject.Inject
 
 class AllPlacesFragment : Fragment() {
     private var _binding: FragmentAllPlacesBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapterAll: AllPlacesAdapter
 
     @Inject
     lateinit var vmFactory: ViewModelProvider.Factory
@@ -41,27 +44,39 @@ class AllPlacesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+
+        viewModel.allPlaces.observe(viewLifecycleOwner){
+                list ->
+            list?.let {
+                adapterAll.updateList(it)
+            }
+        }
+
         binding.fabAddPlace.setOnClickListener {
             findNavController().navigate(
                 R.id.action_navigation_all_places_to_navigation_add_place
             )
         }
+    }
 
-        //TODO TEST IMPL
-        binding.testDetails.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_navigation_all_places_to_navigation_place_details
-            )
-        }
-        viewModel.allPlaces.observe(viewLifecycleOwner){
-            list ->
-            list?.let {
-                for (item in it){
-                    Log.i("Test", item.toString())
-                }
+
+    private fun setupRecyclerView(){
+        adapterAll = AllPlacesAdapter(requireContext(), object : ItemPlaceCallback{
+            override fun onClick(id: Int) {
+                findNavController().navigate(AllPlacesFragmentDirections.actionNavigationAllPlacesToNavigationPlaceDetails(id))
             }
+        })
+        binding.rvAllPlaces.apply {
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = adapterAll
         }
     }
+
 
     override fun onDestroyView() {
         _binding = null
