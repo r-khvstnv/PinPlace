@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.rkhvstnv.pinplace.di.factory.ViewModelKey
 import com.rkhvstnv.pinplace.ui.addplace.AddPlaceViewModel
 import com.rkhvstnv.pinplace.ui.allplaces.AllPlacesViewModel
+import com.rkhvstnv.pinplace.ui.map.MapViewModel
 import com.rkhvstnv.pinplace.ui.placedetails.PlaceDetailsViewModel
 import com.rkhvstnv.pinplace.ui.weather.WeatherViewModel
 import dagger.Binds
@@ -28,4 +29,8 @@ abstract class ViewModelModule {
     @Binds
     @[IntoMap ViewModelKey(PlaceDetailsViewModel::class)]
     abstract fun bindPlaceDetailsViewModel(viewModel: PlaceDetailsViewModel): ViewModel
+
+    @Binds
+    @[IntoMap ViewModelKey(MapViewModel::class)]
+    abstract fun bindMapViewModel(viewModel: MapViewModel): ViewModel
 }

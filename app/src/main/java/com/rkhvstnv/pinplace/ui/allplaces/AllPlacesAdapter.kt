@@ -48,12 +48,4 @@ class AllPlacesAdapter(
         placesList = list
         notifyDataSetChanged()
     }
-
-    fun performEditSwipe(){
-
-    }
-
-    fun preformDeleteSwipe(){
-    }
-
 }

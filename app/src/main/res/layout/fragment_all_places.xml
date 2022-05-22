@@ -18,11 +18,4 @@
         android:layout_margin="@dimen/fab_margin"
         android:contentDescription="@string/title_add_place"
         android:src="@drawable/ic_add_place_24" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/test_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_place_24" />
 </FrameLayout>

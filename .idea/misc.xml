@@ -20,6 +20,7 @@
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_hail.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_humidity.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_isolated_thunderstorm.xml" value="0.188" />
+        <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_map_24.xml" value="0.231" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_max_temp.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_mostly_cloudy.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_partly_cloudy.xml" value="0.1865" />
@@ -39,10 +40,12 @@
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_wind_speed.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_windy.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/bottom_sheet_place_details.xml" value="0.24895833333333334" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/dialog_image_source.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_add_place.xml" value="0.264" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_all_places.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_autocomplete.xml" value="0.25" />
+        <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_map.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_maps.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_place_details.xml" value="0.2359375" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/fragment_weather.xml" value="0.264" />

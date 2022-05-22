@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def dagger2Ver = "2.41"
     def retrofit2Ver = "2.9.0"
     def rxJava3Ver = "3.0.0"

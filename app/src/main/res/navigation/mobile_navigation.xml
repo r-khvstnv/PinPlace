@@ -48,4 +48,10 @@
             app:argType="integer"
             android:defaultValue="-5" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.rkhvstnv.pinplace.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>

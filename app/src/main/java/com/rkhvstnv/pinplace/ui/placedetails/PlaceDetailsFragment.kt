@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.rkhvstnv.pinplace.R
@@ -80,7 +80,6 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
 
         viewModel.isMapVisible.observe(viewLifecycleOwner){
             isVisible ->
-            Toast.makeText(requireContext(), isVisible.toString(), Toast.LENGTH_SHORT).show()
             with(binding){
                 if (isVisible){
                     ivPlaceDetailsImage.visibility = View.GONE
@@ -144,7 +143,7 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
                 p ->
             p?.let {
                 val latLng = LatLng(it.lat, it.lon)
-                gm.addMarker(MarkerOptions().position(latLng).title(it.title))
+                gm.addMarker(MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(218F)))
                 val latLngZoom = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
                 gm.animateCamera(latLngZoom)
             }

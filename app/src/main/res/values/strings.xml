@@ -4,6 +4,7 @@
     <string name="title_all_places">All Places</string>
     <string name="title_place_details">Place Details</string>
     <string name="title_add_place">Add Place</string>
+    <string name="title_map">Map</string>
     <string name="error_empty_field">Empty field</string>
     <string name="error_permission_is_not_granted">Permission required for this Feature is Not Granted</string>
     <string name="st_saved_successfully">Saved Successfully</string>

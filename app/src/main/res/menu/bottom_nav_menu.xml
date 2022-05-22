@@ -11,4 +11,10 @@
         android:icon="@drawable/ic_place_24"
         android:title="@string/title_all_places"
         />
+
+    <item
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/ic_map_24"
+        android:title="@string/title_map"
+        />
 </menu>

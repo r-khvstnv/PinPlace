@@ -4,6 +4,7 @@ import android.app.Application
 import com.rkhvstnv.pinplace.di.module.AppModule
 import com.rkhvstnv.pinplace.ui.addplace.AddPlaceFragment
 import com.rkhvstnv.pinplace.ui.allplaces.AllPlacesFragment
+import com.rkhvstnv.pinplace.ui.map.MapFragment
 import com.rkhvstnv.pinplace.ui.placedetails.PlaceDetailsFragment
 import com.rkhvstnv.pinplace.ui.weather.WeatherFragment
 import dagger.Component
@@ -21,4 +22,5 @@ interface AppComponent {
     fun inject(fragment: AddPlaceFragment)
     fun inject(fragment: AllPlacesFragment)
     fun inject(fragment: PlaceDetailsFragment)
+    fun inject(fragment: MapFragment)
 }
