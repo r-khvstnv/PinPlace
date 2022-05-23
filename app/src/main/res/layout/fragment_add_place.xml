@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_margin="@dimen/m_default_layout_margin">
 
         <!--Image-->
         <FrameLayout
@@ -26,7 +26,7 @@
                 android:layout_height="@dimen/add_place_image_size"
                 android:layout_gravity="center"
                 android:background="?attr/colorPrimary"
-                android:padding="5dp"
+                android:padding="@dimen/add_place_image_padding"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
             <TextView
@@ -34,9 +34,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/st_add_image"
+                android:text="@string/action_add_image"
                 android:textColor="?attr/colorOnPrimary"
-                android:textSize="16sp" />
+                android:textSize="@dimen/add_place_image_descriptor_text_size" />
         </FrameLayout>
 
 
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/add_place_image_source_internal_margin"
-                    android:text="@string/st_gallery"
+                    android:text="@string/option_gallery"
                     app:icon="@drawable/ic_baseline_image_24" />
 
                 <Button
@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/add_place_image_source_internal_margin"
-                    android:text="@string/st_camera"
+                    android:text="@string/option_camera"
                     app:icon="@drawable/ic_baseline_photo_camera_24" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -82,9 +82,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_title"
             style="@style/PlaceTextInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/add_place_text_layout_margin_top"
             android:hint="@string/st_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,9 +99,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_date"
             style="@style/PlaceTextInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/add_place_text_layout_margin_top"
             android:hint="@string/st_date"
             app:layout_constraintEnd_toStartOf="@id/btn_current_date"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/add_place_current_btn_margin"
-            android:text="@string/st_current"
+            android:text="@string/option_current"
             app:layout_constraintBottom_toBottomOf="@id/til_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/til_date" />
@@ -134,9 +128,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_location"
             style="@style/PlaceTextInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/add_place_text_layout_margin_top"
             android:hint="@string/st_location"
             app:layout_constraintEnd_toStartOf="@id/btn_current_location"
             app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/add_place_current_btn_margin"
-            android:text="@string/st_current"
+            android:text="@string/option_current"
             app:layout_constraintBottom_toBottomOf="@id/til_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/til_location" />
@@ -166,9 +157,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_description"
             style="@style/PlaceTextInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/add_place_text_layout_margin_top"
             android:hint="@string/st_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/add_place_btn_margin_top"
             android:text="@string/title_add_place"
-            android:textSize="20sp"
+            android:textSize="@dimen/add_place_btn_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

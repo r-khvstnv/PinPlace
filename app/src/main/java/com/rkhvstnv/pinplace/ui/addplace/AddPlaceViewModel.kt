@@ -1,5 +1,6 @@
 package com.rkhvstnv.pinplace.ui.addplace
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,7 +8,6 @@ import com.rkhvstnv.pinplace.database.PlaceEntity
 import com.rkhvstnv.pinplace.database.PlaceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AddPlaceViewModel @Inject constructor(private val repository: PlaceRepository) : ViewModel() {
@@ -17,7 +17,7 @@ class AddPlaceViewModel @Inject constructor(private val repository: PlaceReposit
     private var lon = MutableLiveData<Double>()
     //checker for place saving
     private var _isSaved = MutableLiveData(false)
-    val isSaved: MutableLiveData<Boolean> get() = _isSaved
+    val isSaved: LiveData<Boolean> get() = _isSaved
 
 
     fun setDateL(value: Long){
@@ -29,8 +29,8 @@ class AddPlaceViewModel @Inject constructor(private val repository: PlaceReposit
         this.lon.value = lon
     }
 
-    /**Method insert new Place to database.
-     * All fields, should be previously checked in Fragment*/
+    /**Method inserts new Place to database.
+     * All fields, should be previously invalidated in Fragment*/
     fun addPlace(title: String, description: String, locationName: String){
         val place = PlaceEntity(
             imageSource = imagePath.value!!,
@@ -44,10 +44,7 @@ class AddPlaceViewModel @Inject constructor(private val repository: PlaceReposit
 
         viewModelScope.launch(Dispatchers.IO){
             repository.insertPlace(place)
-
-            withContext(Dispatchers.Main){
-                _isSaved.value = true
-            }
+            _isSaved.postValue(true)
         }
     }
 }

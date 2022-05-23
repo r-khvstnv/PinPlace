@@ -93,10 +93,12 @@ class AddPlaceFragment : BaseFragment() {
         viewModel.isSaved.observe(viewLifecycleOwner){
             success ->
             if (success){
-                showSnackMessage(getString(R.string.st_saved_successfully))
+                showSnackMessage(getString(R.string.result_saved_successfully))
                 findNavController().popBackStack()
             }
         }
+
+        /*Method helps to display image after configuration changes*/
         viewModel.imagePath.observe(viewLifecycleOwner){
             image ->
             image?.let {

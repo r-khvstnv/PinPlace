@@ -36,7 +36,7 @@
                 style="@style/WeatherCardViewPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/weather_inner_margin"
+                android:layout_margin="@dimen/m_default_layout_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_current_location">
@@ -44,13 +44,12 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/weather_card_padding_horizontal"
-                    android:paddingVertical="@dimen/weather_card_padding_vertical">
+                    android:padding="@dimen/m_default_layout_margin">
 
                     <ImageView
                         android:id="@+id/iv_weather_image"
                         android:layout_width="wrap_content"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:contentDescription="@string/title_weather"
                         android:minWidth="@dimen/weather_image_size"
                         android:minHeight="@dimen/weather_image_size"
@@ -62,27 +61,27 @@
 
                     <TextView
                         android:id="@+id/tv_weather_title"
-                        style="@style/WeatherTextViewOnPrimaryCard"
+                        style="@style/WeatherTextViewOnPrimaryCardView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/weather_title_size"
+                        android:textSize="@dimen/weather_title_text_size"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/iv_weather_image"
                         tools:text="Clear Cloudy" />
 
                     <TextView
                         android:id="@+id/tv_day_name"
-                        style="@style/WeatherTextViewOnPrimaryCard"
+                        style="@style/WeatherTextViewOnPrimaryCardView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/weather_day_part_text_size"
+                        android:textSize="@dimen/weather_day_name_text_size"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_weather_title"
                         tools:text="Monday" />
 
                     <TextView
                         android:id="@+id/tv_temperature"
-                        style="@style/WeatherTextViewOnPrimaryCard"
+                        style="@style/WeatherTextViewOnPrimaryCardView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/weather_temperature_size"
@@ -92,7 +91,7 @@
 
                     <TextView
                         android:id="@+id/_temperature_sign"
-                        style="@style/WeatherTextViewOnPrimaryCard"
+                        style="@style/WeatherTextViewOnPrimaryCardView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/st_celsius_sign"
@@ -102,10 +101,10 @@
 
                     <TextView
                         android:id="@+id/tv_feels_like"
-                        style="@style/WeatherTextViewOnPrimaryCard"
+                        style="@style/WeatherTextViewOnPrimaryCardView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/weather_feels_like_size"
+                        android:textSize="@dimen/weather_feels_like_text_size"
                         app:layout_constraintEnd_toEndOf="@id/_temperature_sign"
                         app:layout_constraintTop_toBottomOf="@id/tv_temperature"
                         tools:text="Feels like 30°" />
@@ -162,7 +161,7 @@
                 app:layout_constraintEnd_toStartOf="@id/tv_pressure"
                 app:layout_constraintStart_toEndOf="@id/tv_wind"
                 app:layout_constraintTop_toTopOf="@id/tv_wind"
-                tools:text="23 km" />
+                tools:text="59 %" />
 
             <TextView
                 android:id="@+id/tv_pressure"
@@ -180,7 +179,7 @@
                 android:id="@+id/rv_hour_forecast"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/weather_inner_margin"
+                android:layout_marginHorizontal="@dimen/m_default_layout_margin"
                 android:layout_marginVertical="@dimen/weather_forecast_margin_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -228,7 +227,7 @@
                 style="@style/WeatherCardViewSecondary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/weather_inner_margin"
+                android:layout_marginHorizontal="@dimen/m_default_layout_margin"
                 android:layout_marginVertical="@dimen/weather_forecast_margin_vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

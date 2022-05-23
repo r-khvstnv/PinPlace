@@ -13,6 +13,7 @@ import javax.inject.Inject
 class AllPlacesViewModel @Inject constructor(private val repository: PlaceRepository) : ViewModel() {
     val allPlaces: LiveData<List<PlaceEntity>> = repository.allPlacesList.asLiveData()
 
+    /**Method deletes place from database*/
     fun requestPlaceDeleting(placeEntity: PlaceEntity){
         viewModelScope.launch(Dispatchers.IO){
             repository.deletePlace(placeEntity)

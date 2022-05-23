@@ -70,11 +70,16 @@ class MapFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
         viewModel.allPlacesList.observe(viewLifecycleOwner){
             list ->
             list?.let {
+                /*If list isNotEmpty, all markers will be showed*/
                 if (it.isNotEmpty()){
                     binding.cvNoPlaces.visibility = View.GONE
                     for (place in list){
                         val latLng = LatLng(place.lat, place.lon)
-                        val marker = gm.addMarker(MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(218F)))
+                        val marker = gm.addMarker(
+                            MarkerOptions()
+                                .position(latLng)
+                                .icon(BitmapDescriptorFactory.defaultMarker(218F))
+                        )
                         marker.tag = place
 
                         bounds.include(latLng)
@@ -83,6 +88,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
                     val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds.build(), 25, 25, 5)
                     gm.animateCamera(cameraUpdate)
                 } else{
+                    /*Otherwise will be displayed option to add new place*/
                     binding.cvNoPlaces.visibility = View.VISIBLE
                 }
             }
@@ -100,6 +106,7 @@ class MapFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
     }
 
 
+    /**Method shows bottomSheet with information of corresponding place*/
     private fun showBottomSheetPlace(place: PlaceEntity){
         val dialog = BottomSheetDialog(requireContext())
         val dBinding = BottomSheetPlaceDetailsBinding.inflate(LayoutInflater.from(requireContext()))

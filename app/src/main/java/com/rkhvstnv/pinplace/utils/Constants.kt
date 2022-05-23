@@ -16,8 +16,9 @@ object Constants {
     const val WEATHER_SHARED_JSON_STRING = "WeatherSharedJsonString"
 
 
-
     const val PLACE_IMAGE_DIRECTORY = "PinPlaceImage"
     const val PLACE_ID = "id"
     const val PLACE_TABLE_NAME = "places_table"
+
+    const val LOCATION_PERMISSION_REQUEST_CODE = 101
 }

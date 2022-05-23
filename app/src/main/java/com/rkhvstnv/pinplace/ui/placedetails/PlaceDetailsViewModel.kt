@@ -13,9 +13,9 @@ import javax.inject.Inject
 
 class PlaceDetailsViewModel @Inject constructor(private val repository: PlaceRepository): ViewModel() {
     lateinit var place: LiveData<PlaceEntity>
-    private val _isDeleted = MutableLiveData<Boolean>(false)
+    private val _isDeleted = MutableLiveData(false)
     val isDeleted: LiveData<Boolean> get() = _isDeleted
-    private val _isMapVisible = MutableLiveData<Boolean>(false)
+    private val _isMapVisible = MutableLiveData(false)
     val isMapVisible: LiveData<Boolean> get() = _isMapVisible
 
     fun requestPlace(id: Int){

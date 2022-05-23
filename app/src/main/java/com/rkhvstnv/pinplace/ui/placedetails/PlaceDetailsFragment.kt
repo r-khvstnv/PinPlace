@@ -57,8 +57,6 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
             onCreate(savedInstanceState)
         }
 
-
-
         args.placeId.let {
             id ->
             if (id != -5){
@@ -79,15 +77,18 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
             }
         }
 
+        /*Method responsible for displaying map or image*/
         viewModel.isMapVisible.observe(viewLifecycleOwner){
             isVisible ->
             with(binding){
                 if (isVisible){
                     ivPlaceDetailsImage.visibility = View.GONE
-                    fabMap.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_image_24))
+                    fabMap.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_image_24))
                 } else{
                     ivPlaceDetailsImage.visibility = View.VISIBLE
-                    fabMap.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_place_24))
+                    fabMap.setImageDrawable(
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_place_24))
                 }
             }
         }
@@ -95,7 +96,7 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
         viewModel.isDeleted.observe(viewLifecycleOwner){
             success ->
             if (success){
-                showSnackMessage(getString(R.string.st_deleted))
+                showSnackMessage(getString(R.string.result_deleted))
                 findNavController().navigateUp()
             }
         }
@@ -110,15 +111,16 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
     }
 
 
+    /**Method handles alertDialog for place deleting*/
     private fun showDeleteAlertDialog(){
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(R.string.st_delete)
-            .setMessage(R.string.st_are_you_sure_to_delete)
-            .setPositiveButton(R.string.st_delete){ dialog, _ ->
+        builder.setTitle(R.string.option_delete)
+            .setMessage(R.string.warning_are_you_sure_to_delete)
+            .setPositiveButton(R.string.option_delete){ dialog, _ ->
                 viewModel.requestPlaceDeleting()
                 dialog.dismiss()
             }
-            .setNegativeButton(R.string.st_cancel){dialog, _ ->
+            .setNegativeButton(R.string.option_cancel){ dialog, _ ->
                 dialog.cancel()
             }
         builder.create().show()
@@ -160,7 +162,11 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
                 p ->
             p?.let {
                 val latLng = LatLng(it.lat, it.lon)
-                gm.addMarker(MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(218F)))
+                gm.addMarker(
+                    MarkerOptions()
+                        .position(latLng)
+                        .icon(BitmapDescriptorFactory.defaultMarker(218F))
+                )
                 val latLngZoom = CameraUpdateFactory.newLatLngZoom(latLng, 15f)
                 gm.animateCamera(latLngZoom)
             }

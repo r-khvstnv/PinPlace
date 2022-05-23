@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/forecast_item_margin"
+    android:layout_margin="@dimen/m_default_item_margin"
     android:gravity="center">
 
     <TextView
@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rotation="-90"
-        android:textSize="16sp"
+        android:textSize="@dimen/hour_forecast_text_size"
         android:textStyle="bold"
         android:visibility="gone"
         tools:text="Wednesday"
@@ -27,19 +27,19 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/hour_forecast_inner_padding">
+            android:padding="@dimen/m_default_layout_margin">
 
             <TextView
                 android:id="@+id/tv_time_hf"
-                style="@style/WeatherTextViewOnPrimaryCard"
+                style="@style/WeatherTextViewOnPrimaryCardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="@dimen/hour_forecast_text_size"
                 tools:text="05:00" />
 
             <TextView
                 android:id="@+id/tv_temperature_hf"
-                style="@style/WeatherTextViewOnPrimaryCard"
+                style="@style/WeatherTextViewOnPrimaryCardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/hour_forecast_inner_margin"
@@ -56,7 +56,7 @@
 
             <TextView
                 android:id="@+id/tv_wind_speed_hf"
-                style="@style/WeatherTextViewOnPrimaryCard"
+                style="@style/WeatherTextViewOnPrimaryCardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/hour_forecast_inner_margin"

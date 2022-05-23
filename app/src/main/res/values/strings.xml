@@ -5,14 +5,22 @@
     <string name="title_place_details">Place Details</string>
     <string name="title_add_place">Add Place</string>
     <string name="title_map">Map</string>
+    <string name="title_no_places">No Places added yet</string>
+
     <string name="error_empty_field">Empty field</string>
     <string name="error_permission_is_not_granted">Permission required for this Feature is Not Granted</string>
-    <string name="st_saved_successfully">Saved Successfully</string>
-    <string name="st_delete">Delete</string>
-    <string name="st_cancel">Cancel</string>
-    <string name="st_are_you_sure_to_delete">Are you sure to delete this Place?</string>
-    <string name="st_deleted">Deleted</string>
-    <string name="st_no_places">No Places added yet</string>
+
+    <string name="result_saved_successfully">Saved Successfully</string>
+    <string name="result_deleted">Deleted</string>
+
+    <string name="action_add_image">Add Image</string>
+    <string name="option_current">Current</string>
+    <string name="option_gallery">Gallery</string>
+    <string name="option_camera">Camera</string>
+    <string name="option_delete">Delete</string>
+    <string name="option_cancel">Cancel</string>
+
+    <string name="warning_are_you_sure_to_delete">Are you sure to delete this Place?</string>
 
 
     <!--Weather-->
@@ -33,8 +41,4 @@
     <string name="st_description">Description</string>
     <string name="st_date">Date</string>
     <string name="st_location">Location</string>
-    <string name="st_current">Current</string>
-    <string name="st_add_image">Add Image</string>
-    <string name="st_gallery">Gallery</string>
-    <string name="st_camera">Camera</string>
 </resources>

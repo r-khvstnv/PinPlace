@@ -1,51 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Weather-->
     <style name="WeatherDetailsTitleTextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:textSize">@dimen/weather_details_title_text_size</item>
     </style>
-
     <style name="WeatherDetailsTextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:textSize">@dimen/weather_details_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
+
     <style name="WeatherCardViewPrimary" parent="Widget.MaterialComponents.CardView">
-        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardElevation">@dimen/m_default_card_elevation</item>
         <item name="cardBackgroundColor">?attr/colorPrimary</item>
         <item name="strokeWidth">0dp</item>
-        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardCornerRadius">@dimen/m_default_card_radius</item>
     </style>
-
-    <style name="WeatherTextViewOnPrimaryCard" parent="Widget.MaterialComponents.TextView">
+    <style name="WeatherTextViewOnPrimaryCardView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:textAlignment">center</item>
     </style>
 
+
     <style name="WeatherCardViewSecondary" parent="Widget.MaterialComponents.CardView">
-        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardElevation">@dimen/m_default_card_elevation</item>
         <item name="cardBackgroundColor">?attr/colorSecondary</item>
         <item name="strokeWidth">0dp</item>
-        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardCornerRadius">@dimen/m_default_card_radius</item>
     </style>
-
-    <style name="WeatherTextViewOnSecondaryCard" parent="Widget.MaterialComponents.TextView">
+    <style name="WeatherTextViewOnSecondaryCardView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">?attr/colorOnSecondary</item>
     </style>
+    <!---->
 
 
+
+
+    <!--Places-->
     <style name="PlaceTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxBackgroundColor">?attr/colorSurface</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginTop">@dimen/add_place_text_layout_margin_top</item>
     </style>
+
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
         <item name="cornerSize">50%</item>
     </style>
 
+
     <style name="PlacesCardViewDefault" parent="Widget.MaterialComponents.CardView">
-        <item name="cardElevation">@dimen/card_elevation</item>
+        <item name="cardElevation">@dimen/m_default_card_elevation</item>
         <item name="strokeWidth">0dp</item>
-        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardCornerRadius">@dimen/m_default_card_radius</item>
+    </style>
+
+
+    <style name="PlaceTitleTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/place_details_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="PlaceSubtitleTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/place_details_subtitles_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/place_details_subtitle_margin_top</item>
+    </style>
+    <style name="PlaceDescriptorTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/place_details_text_size</item>
+        <item name="android:layout_marginTop">@dimen/place_details_text_margin_top</item>
     </style>
 </resources>

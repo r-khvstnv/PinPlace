@@ -1,21 +1,20 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!--Default values-->
+    <dimen name="m_default_layout_margin">16dp</dimen>
+    <dimen name="m_default_card_elevation">5dp</dimen>
+    <dimen name="m_default_card_radius">20dp</dimen>
+    <dimen name="m_default_fab_margin">20dp</dimen>
+    <dimen name="m_default_item_margin">5dp</dimen>
 
-    <dimen name="card_elevation">5dp</dimen>
-    <dimen name="card_radius">20dp</dimen>
+
 
     <!--Weather-->
     <dimen name="weather_curr_location_margin_top">10dp</dimen>
-    <dimen name="weather_inner_margin">16dp</dimen>
-    <dimen name="weather_card_padding_horizontal">16dp</dimen>
-    <dimen name="weather_card_padding_vertical">16dp</dimen>
     <dimen name="weather_image_size">80dp</dimen>
-    <dimen name="weather_title_size">28sp</dimen>
-    <dimen name="weather_day_part_text_size">16sp</dimen>
+    <dimen name="weather_title_text_size">28sp</dimen>
+    <dimen name="weather_day_name_text_size">16sp</dimen>
     <dimen name="weather_temperature_size">60sp</dimen>
-    <dimen name="weather_feels_like_size">14sp</dimen>
+    <dimen name="weather_feels_like_text_size">14sp</dimen>
 
     <dimen name="weather_details_title_text_size">14sp</dimen>
     <dimen name="weather_details_text_size">20sp</dimen>
@@ -24,32 +23,28 @@
     <dimen name="weather_sun_states_margin_top">50dp</dimen>
     <dimen name="weather_sun_state_progress_margin">10dp</dimen>
     <dimen name="weather_forecast_margin_vertical">30dp</dimen>
-
     <!--Weather items-->
-    <dimen name="hour_forecast_inner_padding">16dp</dimen>
     <dimen name="hour_forecast_inner_margin">5dp</dimen>
-    <dimen name="forecast_item_margin">5dp</dimen>
     <dimen name="hour_forecast_image_size">36dp</dimen>
+    <dimen name="hour_forecast_text_size">16sp</dimen>
     <dimen name="day_forecast_inner_padding">10dp</dimen>
     <dimen name="day_forecast_temperature_text_size">22sp</dimen>
     <dimen name="day_forecast_text_size">18sp</dimen>
 
 
 
-    <!--All places-->
-    <dimen name="fab_margin">20dp</dimen>
+    <!--Places-->
     <!--Add Place-->
-    <dimen name="add_place_layout_margin">16dp</dimen>
     <dimen name="add_place_image_size">200dp</dimen>
+    <dimen name="add_place_image_padding">5dp</dimen>
+    <dimen name="add_place_image_descriptor_text_size">16sp</dimen>
     <dimen name="add_place_text_layout_margin_top">10dp</dimen>
     <dimen name="add_place_current_btn_margin">10dp</dimen>
     <dimen name="add_place_btn_margin_top">50dp</dimen>
-    <dimen name="add_place_btn_margin_bottom">10dp</dimen>
+    <dimen name="add_place_btn_text_size">20sp</dimen>
     <dimen name="add_place_image_source_internal_margin">10dp</dimen>
-    <dimen name="add_place_image_source_margin_top">10dp</dimen>
-    <dimen name="dialog_autocomplete_margin">30dp</dimen>
     <!--Place Details-->
-    <dimen name="place_details_margin_horizontal">16dp</dimen>
+    <dimen name="place_details_frame_height">320dp</dimen>
     <dimen name="place_details_title_text_size">36sp</dimen>
     <dimen name="place_details_subtitles_text_size">22sp</dimen>
     <dimen name="place_details_text_size">18sp</dimen>
@@ -61,6 +56,10 @@
     <dimen name="item_place_location_text_size">18sp</dimen>
     <dimen name="item_place_inner_margin_horizontal">10dp</dimen>
     <dimen name="item_place_inner_margin_vertical">8dp</dimen>
-    <dimen name="item_place_card_margin">5dp</dimen>
     <dimen name="item_place_image_height">200dp</dimen>
+    <!--No place-->
+    <dimen name="no_place_text_size">16sp</dimen>
+    <dimen name="no_place_text_margin_start">10dp</dimen>
+    <!--Bottom Sheet-->
+    <dimen name="bottom_sheet_image_height">300dp</dimen>
 </resources>

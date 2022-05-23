@@ -51,6 +51,7 @@ class AllPlacesFragment : Fragment() {
             list?.let {
                 if (it.isNotEmpty()){
                     adapterAll.updateList(it.reversed())
+
                     binding.rvAllPlaces.visibility = View.VISIBLE
                     binding.incNoPlaces.root.visibility = View.GONE
                 } else{
@@ -69,10 +70,15 @@ class AllPlacesFragment : Fragment() {
     }
 
 
+    /**Method sets up RecyclerView with corresponding adapter
+     * onClick Item - NavController will navigate to PlaceDetailsFragment and pass placeId
+     * onDelete Item - request place deleting*/
     private fun setupRecyclerView(){
         adapterAll = AllPlacesAdapter(requireContext(), object : ItemPlaceCallback{
             override fun onClick(id: Int) {
-                findNavController().navigate(AllPlacesFragmentDirections.actionNavigationAllPlacesToNavigationPlaceDetails(id))
+                findNavController().navigate(
+                    AllPlacesFragmentDirections.actionNavigationAllPlacesToNavigationPlaceDetails(id)
+                )
             }
 
             override fun onDelete(placeEntity: PlaceEntity) {
