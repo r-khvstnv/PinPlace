@@ -22,15 +22,16 @@
             tools:background="?attr/colorPrimary" />
 
         <ImageView
-            android:id="@+id/_location"
+            android:id="@+id/iv_delete_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/item_place_inner_margin_horizontal"
             android:layout_marginTop="@dimen/item_place_inner_margin_vertical"
             android:contentDescription="@string/st_description"
-            android:src="@drawable/ic_place_24"
+            android:src="@drawable/ic_baseline_delete_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_place_image_item" />
+            app:layout_constraintTop_toBottomOf="@id/iv_place_image_item"
+            app:tint="?attr/colorError" />
 
         <TextView
             android:id="@+id/tv_place_title_item"
@@ -40,7 +41,7 @@
             android:textSize="@dimen/item_place_title_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/_location"
+            app:layout_constraintTop_toTopOf="@id/iv_delete_item"
             tools:text="@tools:sample/cities" />
 
         <TextView

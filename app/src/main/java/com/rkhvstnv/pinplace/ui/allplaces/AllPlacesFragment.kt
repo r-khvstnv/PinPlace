@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rkhvstnv.pinplace.R
+import com.rkhvstnv.pinplace.database.PlaceEntity
 import com.rkhvstnv.pinplace.databinding.FragmentAllPlacesBinding
 import com.rkhvstnv.pinplace.utils.ItemPlaceCallback
 import com.rkhvstnv.pinplace.utils.appComponent
@@ -48,7 +49,14 @@ class AllPlacesFragment : Fragment() {
         viewModel.allPlaces.observe(viewLifecycleOwner){
                 list ->
             list?.let {
-                adapterAll.updateList(it)
+                if (it.isNotEmpty()){
+                    adapterAll.updateList(it.reversed())
+                    binding.rvAllPlaces.visibility = View.VISIBLE
+                    binding.incNoPlaces.root.visibility = View.GONE
+                } else{
+                    binding.rvAllPlaces.visibility = View.GONE
+                    binding.incNoPlaces.root.visibility = View.VISIBLE
+                }
             }
         }
 
@@ -57,6 +65,7 @@ class AllPlacesFragment : Fragment() {
                 R.id.action_navigation_all_places_to_navigation_add_place
             )
         }
+
     }
 
 
@@ -64,6 +73,10 @@ class AllPlacesFragment : Fragment() {
         adapterAll = AllPlacesAdapter(requireContext(), object : ItemPlaceCallback{
             override fun onClick(id: Int) {
                 findNavController().navigate(AllPlacesFragmentDirections.actionNavigationAllPlacesToNavigationPlaceDetails(id))
+            }
+
+            override fun onDelete(placeEntity: PlaceEntity) {
+                viewModel.requestPlaceDeleting(placeEntity)
             }
         })
         binding.rvAllPlaces.apply {

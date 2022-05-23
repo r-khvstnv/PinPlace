@@ -23,6 +23,7 @@
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_map_24.xml" value="0.231" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_max_temp.xml" value="0.188" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_mostly_cloudy.xml" value="0.188" />
+        <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_no_place_24.xml" value="0.231" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_partly_cloudy.xml" value="0.1865" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_place_24.xml" value="0.1975" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/drawable/ic_refresh.xml" value="0.188" />
@@ -52,6 +53,7 @@
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/item_day_forecast.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/item_hour_forecast.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/item_place.xml" value="0.25" />
+        <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/layout/no_places_error.xml" value="0.25" />
         <entry key="..\:/ProjectsFolder/PinPlace/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
       </map>
     </option>

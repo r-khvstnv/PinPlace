@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.rkhvstnv.pinplace.R
 import com.rkhvstnv.pinplace.database.PlaceEntity
 import com.rkhvstnv.pinplace.databinding.BottomSheetPlaceDetailsBinding
 import com.rkhvstnv.pinplace.databinding.FragmentMapBinding
@@ -50,6 +52,12 @@ class MapFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
             getMapAsync(this@MapFragment)
             onCreate(savedInstanceState)
         }
+
+        binding.cvNoPlaces.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_navigation_map_to_navigation_add_place
+            )
+        }
     }
 
     override fun onStart() {
@@ -62,16 +70,21 @@ class MapFragment : BaseFragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickL
         viewModel.allPlacesList.observe(viewLifecycleOwner){
             list ->
             list?.let {
-                for (place in list){
-                    val latLng = LatLng(place.lat, place.lon)
-                    val marker = gm.addMarker(MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(218F)))
-                    marker.tag = place
+                if (it.isNotEmpty()){
+                    binding.cvNoPlaces.visibility = View.GONE
+                    for (place in list){
+                        val latLng = LatLng(place.lat, place.lon)
+                        val marker = gm.addMarker(MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.defaultMarker(218F)))
+                        marker.tag = place
 
-                    bounds.include(latLng)
+                        bounds.include(latLng)
+                    }
+
+                    val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds.build(), 25, 25, 5)
+                    gm.animateCamera(cameraUpdate)
+                } else{
+                    binding.cvNoPlaces.visibility = View.VISIBLE
                 }
-
-                val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds.build(), 25, 25, 5)
-                gm.animateCamera(cameraUpdate)
             }
         }
         gm.setOnMarkerClickListener(this)

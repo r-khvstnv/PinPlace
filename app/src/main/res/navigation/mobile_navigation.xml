@@ -42,16 +42,24 @@
         android:id="@+id/navigation_place_details"
         android:name="com.rkhvstnv.pinplace.ui.placedetails.PlaceDetailsFragment"
         android:label="@string/title_place_details"
-        tools:layout="@layout/fragment_place_details" >
+        tools:layout="@layout/fragment_place_details">
         <argument
             android:name="place_id"
-            app:argType="integer"
-            android:defaultValue="-5" />
+            android:defaultValue="-5"
+            app:argType="integer" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.rkhvstnv.pinplace.ui.map.MapFragment"
         android:label="@string/title_map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_navigation_map_to_navigation_add_place"
+            app:destination="@id/navigation_add_place"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 </navigation>

@@ -8,6 +8,7 @@ import com.rkhvstnv.pinplace.database.PlaceEntity
 import com.rkhvstnv.pinplace.database.PlaceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class PlaceDetailsViewModel @Inject constructor(private val repository: PlaceRepository): ViewModel() {
@@ -22,10 +23,10 @@ class PlaceDetailsViewModel @Inject constructor(private val repository: PlaceRep
     }
 
     fun requestPlaceDeleting(){
-        if (place.value != null){
+        place.value?.let {
             viewModelScope.launch(Dispatchers.IO){
-                repository.deletePlace(place.value!!)
-                _isDeleted.value = true
+                repository.deletePlace(it)
+                _isDeleted.postValue(true)
             }
         }
     }

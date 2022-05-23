@@ -14,7 +14,7 @@
             android:id="@+id/iv_image_bottom"
             android:layout_width="match_parent"
             android:layout_height="320dp"
-            android:background="?attr/colorPrimary"
+            tools:background="?attr/colorPrimary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

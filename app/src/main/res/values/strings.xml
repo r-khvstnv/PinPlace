@@ -9,6 +9,10 @@
     <string name="error_permission_is_not_granted">Permission required for this Feature is Not Granted</string>
     <string name="st_saved_successfully">Saved Successfully</string>
     <string name="st_delete">Delete</string>
+    <string name="st_cancel">Cancel</string>
+    <string name="st_are_you_sure_to_delete">Are you sure to delete this Place?</string>
+    <string name="st_deleted">Deleted</string>
+    <string name="st_no_places">No Places added yet</string>
 
 
     <!--Weather-->

@@ -1,5 +1,6 @@
 package com.rkhvstnv.pinplace.ui.placedetails
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -94,17 +95,33 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
         viewModel.isDeleted.observe(viewLifecycleOwner){
             success ->
             if (success){
-                findNavController().popBackStack()
+                showSnackMessage(getString(R.string.st_deleted))
+                findNavController().navigateUp()
             }
         }
 
         binding.btnDelete.setOnClickListener {
-            viewModel.requestPlaceDeleting()
+            showDeleteAlertDialog()
         }
 
         binding.fabMap.setOnClickListener {
             viewModel.flipMapVisibilityState()
         }
+    }
+
+
+    private fun showDeleteAlertDialog(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(R.string.st_delete)
+            .setMessage(R.string.st_are_you_sure_to_delete)
+            .setPositiveButton(R.string.st_delete){ dialog, _ ->
+                viewModel.requestPlaceDeleting()
+                dialog.dismiss()
+            }
+            .setNegativeButton(R.string.st_cancel){dialog, _ ->
+                dialog.cancel()
+            }
+        builder.create().show()
     }
 
     override fun onStart() {

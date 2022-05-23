@@ -7,6 +7,7 @@ import com.rkhvstnv.pinplace.database.PlaceDatabase
 import com.rkhvstnv.pinplace.database.PlaceRepository
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 
 @Module
@@ -16,6 +17,7 @@ class DatabaseModule(private val application: Application) {
         return application
     }
 
+    @Singleton
     @Provides
     fun providesPlaceDatabase(app: Application): PlaceDatabase{
         return Room.databaseBuilder(app.applicationContext, PlaceDatabase::class.java, "place_database")
@@ -23,9 +25,11 @@ class DatabaseModule(private val application: Application) {
             .build()
     }
 
+    @Singleton
     @Provides
     fun providesPlaceDao(placeDatabase: PlaceDatabase) = placeDatabase.getPlaceDao()
 
+    @Singleton
     @Provides
     fun providesPlaceRepository(placeDao: PlaceDao) = PlaceRepository(placeDao)
 }

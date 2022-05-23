@@ -14,7 +14,7 @@ class AllPlacesAdapter(
     private val context: Context,
     private val callback: ItemPlaceCallback
 ): RecyclerView.Adapter<AllPlacesAdapter.ViewHolder>() {
-    private var placesList: List<PlaceEntity> = listOf()
+    private var placesList: ArrayList<PlaceEntity> = arrayListOf()
 
     class ViewHolder(val binding: ItemPlaceBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -31,6 +31,10 @@ class AllPlacesAdapter(
             ivPlaceImageItem.loadImage(place.imageSource)
             tvPlaceTitleItem.text = place.title
             tvPlaceLocationItem.text = place.locationName
+
+            ivDeleteItem.setOnClickListener {
+                callback.onDelete(place)
+            }
         }
 
         holder.itemView.setOnClickListener {
@@ -45,7 +49,8 @@ class AllPlacesAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(list: List<PlaceEntity>){
-        placesList = list
+        placesList.clear()
+        placesList.addAll(list)
         notifyDataSetChanged()
     }
 }
