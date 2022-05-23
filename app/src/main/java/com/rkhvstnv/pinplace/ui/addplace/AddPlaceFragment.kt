@@ -83,7 +83,7 @@ class AddPlaceFragment : BaseFragment() {
                 autocompletedPlaceLauncher()
             }
             btnCurrentLocation.setOnClickListener {
-                currentLocationLauncher()
+                requestCurrentLocationWithPermissionCheck()
             }
             btnAddPlace.setOnClickListener {
                 requestPlaceSaving()
@@ -133,11 +133,49 @@ class AddPlaceFragment : BaseFragment() {
     }
 
 
-    /**Method overrides callback from existed location launcher, where already has been implemented
-     * selfPermissionCheck
-     * onLocationResult set received lat and lon to mutableLiveDate
-     * and they formatted form to UI*/
-    private fun currentLocationLauncher() = requestCurrentLocation(object : LocationListener{
+    /**Fine and Coarse Location Permission Launcher
+     * if Granted -> call parent method locationLauncher()*/
+    private val locationPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ){ permissions ->
+            if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true
+                || permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true){
+
+                locationLauncher()
+            } else{
+                showSnackMessage(getString(R.string.error_permission_is_not_granted))
+            }
+        }
+
+    /**Method handles all events corresponding to receiving current location.
+     * Firstly it checks that Location functionality (GPS or Network) is enabled:
+     * false -> show location settings of app
+     * true -> Checks that location permissions are granted:
+     *          true -> request current location
+     *          false -> request permissions*/
+    private fun requestCurrentLocationWithPermissionCheck(){
+        if (isLocationFunctionalityEnabled()){
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                locationLauncher()
+            } else{
+                locationPermissionLauncher.launch(
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION))
+            }
+        } else{
+            requestLocationSettings()
+        }
+    }
+
+    /**Method request current location using parent method currentLocationClient() in BaseFragment
+     * Using interface LocationListener data will be received from it*/
+    private fun locationLauncher() = currentLocationClient(object : LocationListener{
         override fun onLocationResult(result: LocationResult) {
             val location = result.lastLocation
             viewModel.setLatLon(location.latitude, location.longitude)

@@ -1,12 +1,10 @@
 package com.rkhvstnv.pinplace.ui
 
-import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Looper
 import android.provider.Settings
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.gms.location.*
@@ -24,20 +22,8 @@ open class BaseFragment: Fragment() {
         sb.show()
     }
 
-
-    //Fine Location Permission launcher
-    private fun requestPermissionLauncher(listener: LocationListener) =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()){
-                isGranted ->
-            if (isGranted){
-                getCurrentLocation(listener = listener)
-            } else{
-                showSnackMessage(getString(R.string.error_permission_is_not_granted))
-            }
-        }
-
     /**Method checks that GPS and Network functionality is enabled*/
-    private fun isLocationFunctionalityEnabled(): Boolean{
+    fun isLocationFunctionalityEnabled(): Boolean{
         //access to the system location services
         val locationManager: LocationManager =
             ContextCompat.getSystemService(requireContext(), LocationManager::class.java)!!
@@ -46,14 +32,15 @@ open class BaseFragment: Fragment() {
     }
 
     /**Method requests location setting for current app*/
-    private fun requestLocationSettings(){
+    fun requestLocationSettings(){
         val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
         startActivity(intent)
     }
 
     /**Method requests current location data and on success request weather update.
      * Inside the method is implemented selfPermission checking */
-    private fun getCurrentLocation(listener: LocationListener){
+    @SuppressLint("MissingPermission")
+    fun currentLocationClient(listener: LocationListener){
         val fusedLocationClient: FusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
         val locationRequest = LocationRequest
@@ -67,25 +54,8 @@ open class BaseFragment: Fragment() {
                 fusedLocationClient.removeLocationUpdates(this)
             }
         }
-
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            fusedLocationClient
-                .requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()!!)
-        } else{
-            requestPermissionLauncher(listener = listener)
-                .launch(Manifest.permission.ACCESS_FINE_LOCATION)
-        }
-    }
-
-    fun requestCurrentLocation(listener: LocationListener){
-        /*Check that GPS functionality is enabled*/
-        if (isLocationFunctionalityEnabled()){
-            getCurrentLocation(listener = listener)
-        } else{
-            requestLocationSettings()
-        }
+        fusedLocationClient
+            .requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper()!!)
     }
 
     interface LocationListener{
