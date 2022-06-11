@@ -1,3 +1,11 @@
+/************************************************
+ * Created by Ruslan Khvastunov                 *
+ * r.khvastunov@gmail.com                       *
+ * Copyright (c) 2022                           *
+ * All rights reserved.                         *
+ *                                              *
+ ************************************************/
+
 package com.rkhvstnv.pinplace.ui.addplace
 
 import androidx.lifecycle.LiveData

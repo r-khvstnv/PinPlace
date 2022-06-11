@@ -1,3 +1,11 @@
+/************************************************
+ * Created by Ruslan Khvastunov                 *
+ * r.khvastunov@gmail.com                       *
+ * Copyright (c) 2022                           *
+ * All rights reserved.                         *
+ *                                              *
+ ************************************************/
+
 package com.rkhvstnv.pinplace.ui.placedetails
 
 import android.app.AlertDialog
@@ -83,10 +91,12 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
             with(binding){
                 if (isVisible){
                     ivPlaceDetailsImage.visibility = View.GONE
+                    placeOnMap.visibility = View.VISIBLE
                     fabMap.setImageDrawable(
                         ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_image_24))
                 } else{
                     ivPlaceDetailsImage.visibility = View.VISIBLE
+                    placeOnMap.visibility = View.GONE
                     fabMap.setImageDrawable(
                         ContextCompat.getDrawable(requireContext(), R.drawable.ic_place_24))
                 }
