@@ -44,6 +44,7 @@
                 android:layout_gravity="center"
                 android:text="@string/action_add_image"
                 android:textColor="?attr/colorOnPrimary"
+                android:textStyle="bold"
                 android:textSize="@dimen/add_place_image_descriptor_text_size" />
         </FrameLayout>
 

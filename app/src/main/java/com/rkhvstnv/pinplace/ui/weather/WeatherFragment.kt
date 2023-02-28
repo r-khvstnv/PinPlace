@@ -235,7 +235,9 @@ class WeatherFragment : BaseFragment() {
     private fun locationLauncher() = currentLocationClient(object : LocationListener{
         override fun onLocationResult(result: LocationResult) {
             val location = result.lastLocation
-            viewModel.updateCurrentLocation(location.latitude, location.longitude)
+            location?.let {
+                viewModel.updateCurrentLocation(location.latitude, location.longitude)
+            }
         }
     })
 

@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 class AddPlaceViewModel @Inject constructor(private val repository: PlaceRepository) : ViewModel() {
     val imagePath = MutableLiveData<String>()
-    private var dateL = MutableLiveData<Long>()
+    var dateL = MutableLiveData<Long>()
     private var lat = MutableLiveData<Double>()
     private var lon = MutableLiveData<Double>()
     //checker for place saving

@@ -25,6 +25,7 @@ interface PlaceDao {
     @Delete
     suspend fun deletePlace(place: PlaceEntity)
 
+
     @Query("SELECT * FROM ${Constants.PLACE_TABLE_NAME} WHERE ${Constants.PLACE_ID} = :id")
     fun getPlaceById(id: Int): LiveData<PlaceEntity>
 

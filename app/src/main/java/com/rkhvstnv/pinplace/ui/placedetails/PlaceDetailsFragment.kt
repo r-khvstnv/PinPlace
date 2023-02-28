@@ -21,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
@@ -33,6 +34,8 @@ import com.rkhvstnv.pinplace.utils.appComponent
 import com.rkhvstnv.pinplace.utils.loadImage
 import javax.inject.Inject
 
+
+
 class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
     private var _binding: FragmentPlaceDetailsBinding? = null
     private val binding get() = _binding!!
@@ -43,6 +46,8 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
     private val viewModel by viewModels<PlaceDetailsViewModel> {
         vmFactory
     }
+
+    private val MAP_BUNDLE_KEY = "MapViewBundleKey"
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -61,8 +66,7 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         binding.placeOnMap.apply {
-            getMapAsync(this@PlaceDetailsFragment)
-            onCreate(savedInstanceState)
+            onCreate(savedInstanceState?.getBundle(MAP_BUNDLE_KEY))
         }
 
         args.placeId.let {
@@ -153,7 +157,14 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        binding.placeOnMap.onSaveInstanceState(outState)
+
+        var mapBundle: Bundle? = outState.getBundle(MAP_BUNDLE_KEY)
+        if (mapBundle == null) {
+            mapBundle = Bundle()
+            outState.putBundle(MAP_BUNDLE_KEY, mapBundle)
+        }
+
+        binding.placeOnMap.onSaveInstanceState(mapBundle)
     }
 
     override fun onLowMemory() {
@@ -162,6 +173,7 @@ class PlaceDetailsFragment : BaseFragment(), OnMapReadyCallback {
     }
 
     override fun onDestroyView() {
+        binding.placeOnMap.getMapAsync { it.clear() }
         binding.placeOnMap.onDestroy()
         _binding = null
         super.onDestroyView()

@@ -186,11 +186,13 @@ class AddPlaceFragment : BaseFragment() {
     private fun locationLauncher() = currentLocationClient(object : LocationListener{
         override fun onLocationResult(result: LocationResult) {
             val location = result.lastLocation
-            viewModel.setLatLon(location.latitude, location.longitude)
-            binding.etLocation.setText(
-                PlaceUtils.getFullAddressFromLocation(
-                    requireContext(), location.latitude, location.longitude)
-            )
+            location?.let {
+                viewModel.setLatLon(location.latitude, location.longitude)
+                binding.etLocation.setText(
+                    PlaceUtils.getFullAddressFromLocation(
+                        requireContext(), location.latitude, location.longitude)
+                )
+            }
         }
     })
 
@@ -388,7 +390,7 @@ class AddPlaceFragment : BaseFragment() {
                 TextUtils.isEmpty(etDate.text) -> etDate.error = error
                 TextUtils.isEmpty(etLocation.text) -> etLocation.error = error
                 TextUtils.isEmpty(etDescription.text) -> etDescription.error = error
-                TextUtils.isEmpty(viewModel.imagePath.value) -> tvAddImage.visibility = View.VISIBLE
+                TextUtils.isEmpty(viewModel.imagePath.value) -> imageSourcePicker()
                 else -> result = true
             }
         }
@@ -399,7 +401,7 @@ class AddPlaceFragment : BaseFragment() {
     /**Next method reset errors in all available fields*/
     private fun resetFieldsErrors(){
         with(binding){
-            tvAddImage.visibility = View.GONE
+            mcvImageSource.visibility = View.GONE
             etTitle.error = null
             etDate.error = null
             etLocation.error = null
